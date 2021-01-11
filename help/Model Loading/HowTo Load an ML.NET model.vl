@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="OAlzQNyPoltNwHzPjHO01V" LanguageVersion="2020.3.0.144" Version="0.128">
+  <NugetDependency Id="Kh84isHxThQQN9qVQVgM7e" Location="VL.CoreLib" Version="2020.3.0-0144-g7cfc36f3d3" />
+  <Patch Id="VlyZ4nntwULMnDR488jJ4J">
+    <Canvas Id="OF3xCnDdYWsPwTRPu29xgz" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="LRxbo3Rp3lLNf2qs3GmJ5q">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
+        <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
+          <Node Bounds="427,331" Id="LHTamiLtGwOOIgdmlOvnPL">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="ML" />
+              <CategoryReference Kind="Category" Name="MLNet" />
+              <Choice Kind="ProcessNode" Name="TaxiFare" />
+            </p:NodeReference>
+            <Pin Id="P5x5foCve1QMJno8IIisg8" Name="VendorId" Kind="InputPin" />
+            <Pin Id="VbL334NIUJAN1GEddtlHxW" Name="RateCode" Kind="InputPin" />
+            <Pin Id="HPDXIJjrWkGOaqrrMmvmHd" Name="PassengerCount" Kind="InputPin" />
+            <Pin Id="Ci8WvokehLPLb9na1UqUAf" Name="TripTime" Kind="InputPin" />
+            <Pin Id="ASTFsS9BMMvPMiryuiObR5" Name="TripDistance" Kind="InputPin" />
+            <Pin Id="KcfuuuWXc7mPu4crUjwJFJ" Name="PaymentType" Kind="InputPin" />
+            <Pin Id="MwFcAuA5iRpLjaM8pnjLFw" Name="FareAmount" Kind="InputPin" />
+            <Pin Id="JYn7B2ea23HMqy3RJIdwON" Name="Predict" Kind="InputPin" />
+          </Node>
+          <Pad Id="JokZe923hHPOVd7VcLIiq1" Comment="Predict" Bounds="569,312,35,15" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="Boolean" />
+              <FullNameCategoryReference ID="Primitive" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
+        <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
+        <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
+        <ProcessDefinition Id="EbPfBCbCzR5OAK7lhaq955">
+          <Fragment Id="KGItBanaoe8OTtmrFvQOev" Patch="J7amywRwp4FP06LTAjeSOh" Enabled="true" />
+          <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="A3eyOlrJsiQNyZJiPOiCMt" Ids="JokZe923hHPOVd7VcLIiq1,JYn7B2ea23HMqy3RJIdwON" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="U2gz7hVeoRDMvRXkfnnUUG" Location="VL.Stride" Version="0.8.154-g7440e39f48" />
+  <NugetDependency Id="PyDhpUzutKpOFK8qJMpXCt" Location="VL.ML" Version="0.0.0.0" />
+</Document>
