@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "VL.ML": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2020.3.0-0144-g7cfc36f3d3\\vvvv.exe",
+      "commandLineArgs": "-o \"C:\\Users\\seb\\Documents\\dev\\vvvv\\libraries\\VL.ML\\help\\Model Loading\\HowTo Load an ML.NET model.vl\" --package-repositories \"C:\\Users\\seb\\Documents\\dev\\vvvv\\libraries\""
+    },
+    "vvvv_debug": {
+      "commandName": "Executable"
+    }
+  }
+}

@@ -12,5 +12,7 @@ namespace VL.ML
         {
             factory.RegisterNodeFactory(mlFactory);
         }
+
+        static IVLNodeDescriptionFactory mlFactory = new MLFactory();
     }
 }
