@@ -232,7 +232,7 @@ namespace VL.ML
             else if(pin.Type.ToString() == "Single")
             {
                 type = typeof(float);
-                dflt = "";
+                dflt = 0.0f;
             }
         }
 
