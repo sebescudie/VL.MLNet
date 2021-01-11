@@ -157,11 +157,19 @@ namespace VL.ML
                 object dflt = "";
                 string descr = "";
 
+                // Retrieve the inputs by looking at the prediction pipeline
                 foreach(var input in predictionPipeline)
                 {
                     GetTypeDefaultAndDescription(input, ref type, ref dflt, ref descr);
                     inputs.Add(new ModelPinDescription(input.Name, type, dflt, descr));
                 }
+
+                // Retrieve the output by looking for a "Score" output column
+                // Might only work for regression models for now
+                var scoreColumn = trainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
+                GetTypeDefaultAndDescription(scoreColumn, ref type, ref dflt, ref descr);
+                outputs.Add(new ModelPinDescription(scoreColumn.Name, type, dflt, descr));
+
 
                 // After we've added our inputs from the ML model, we add the Predict bool that will run the prediction
                 inputs.Add(new ModelPinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
