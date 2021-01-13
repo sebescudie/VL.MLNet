@@ -41,27 +41,27 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="AavrMG5PLZ9PMJiApPhw6v" Comment="VendorId" Bounds="432,253,35,15" ShowValueBox="true" isIOBox="true" Value="Uber">
+          <Pad Id="AavrMG5PLZ9PMJiApPhw6v" Comment="VendorId" Bounds="432,253,35,15" ShowValueBox="true" isIOBox="true" Value="VTS">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="ADWjIDNvMCrPohtkyWhsvb" Comment="RateCode" Bounds="452,278,35,15" ShowValueBox="true" isIOBox="true" Value="C1">
+          <Pad Id="ADWjIDNvMCrPohtkyWhsvb" Comment="RateCode" Bounds="452,278,35,15" ShowValueBox="true" isIOBox="true" Value="1">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Iv4H5T3kcExNHuMnbvVRcf" Comment="PassengerCount" Bounds="471,298,35,15" ShowValueBox="true" isIOBox="true" Value="10">
+          <Pad Id="Iv4H5T3kcExNHuMnbvVRcf" Comment="PassengerCount" Bounds="471,298,50,15" ShowValueBox="true" isIOBox="true" Value="1">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="QN5VWnrla6tQMAHXD2TWTL" Comment="TripTime" Bounds="490,321,35,15" ShowValueBox="true" isIOBox="true" Value="120">
+          <Pad Id="QN5VWnrla6tQMAHXD2TWTL" Comment="TripTime" Bounds="490,321,56,12" ShowValueBox="true" isIOBox="true" Value="1140">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="EfCeBvl9F3YMdDY4KybIaw" Comment="TripDistance" Bounds="510,345,35,15" ShowValueBox="true" isIOBox="true" Value="13">
+          <Pad Id="EfCeBvl9F3YMdDY4KybIaw" Comment="TripDistance" Bounds="510,345,35,15" ShowValueBox="true" isIOBox="true" Value="3.75">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
