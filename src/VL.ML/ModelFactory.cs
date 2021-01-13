@@ -132,9 +132,6 @@ namespace VL.ML
         List<ModelPinDescription> inputs = new List<ModelPinDescription>();
         List<ModelPinDescription> outputs = new List<ModelPinDescription>();
 
-        // Prediction engine
-        dynamic predictionEngine;
-
         public ModelDescription(IVLNodeDescriptionFactory factory, string path)
         {
             Factory = factory;
@@ -266,17 +263,6 @@ namespace VL.ML
             {
                 Init();
                 return outputs;
-            }
-        }
-
-        /// <summary>
-        /// Returns the prediction engine
-        /// </summary>
-        public dynamic PredictionEngine
-        {
-            get
-            {
-                return predictionEngine;
             }
         }
 
