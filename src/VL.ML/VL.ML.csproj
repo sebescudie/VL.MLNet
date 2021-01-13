@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="1.5.4" />
     <PackageReference Include="Microsoft.ML.DataView" Version="1.5.4" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="1.5.4" />
     <PackageReference Include="VL.Core" Version="2020.2.1" />
     <PackageReference Include="VL.Lang" Version="2020.2.1" />
   </ItemGroup>
