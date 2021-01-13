@@ -50,7 +50,8 @@ namespace VL.ML
         private void AddDynamicPropertyToType(DynamicProperty dynamicProperty)
         {
             Type propertyType   = dynamicProperty.SystemType;
-            string propertyName = $"{nameof(DynamicProperty)}_{dynamicProperty.PropertyName}";
+            // string propertyName = $"{nameof(DynamicProperty)}_{dynamicProperty.PropertyName}";
+            string propertyName = $"{dynamicProperty.PropertyName}";
             string fieldName    = $"_{propertyName}";
 
             FieldBuilder fieldBuilder = _typeBuilder.DefineField(fieldName, propertyType, FieldAttributes.Private);
