@@ -78,6 +78,27 @@ namespace VL.ML
             PropertyBuilder propertyBuilder = _typeBuilder.DefineProperty(propertyName, PropertyAttributes.HasDefault, propertyType, null);
             propertyBuilder.SetGetMethod(getMethodBuilder);
             propertyBuilder.SetSetMethod(setMethodBuilder);
+
+            if (dynamicProperty.SetAttribute)
+            {
+                var attributeType = typeof(Microsoft.ML.Data.ColumnNameAttribute);
+                var attributeBuilder = new CustomAttributeBuilder(
+                    attributeType.GetConstructor(new Type[] { typeof(string) }),
+                    new object[] { "Score" },
+                    new PropertyInfo[] { },
+                    new object[] { }
+                    );
+                propertyBuilder.SetCustomAttribute(attributeBuilder);
+            }
+
+            //var attributeType = typeof(DisplayNameAttribute);
+            //var attributeBuilder = new CustomAttributeBuilder(
+            //    attributeType.GetConstructor(new Type[] { typeof(string) }), // Constructor selection.
+            //    new object[] { dynamicProperty.DisplayName }, // Constructor arguments.
+            //    new PropertyInfo[] { }, // Properties to assign to.                    
+            //    new object[] { } // Values for property assignment.
+            //    );
+            //propertyBuilder.SetCustomAttribute(attributeBuilder);
         }
     }
 
@@ -102,5 +123,7 @@ namespace VL.ML
         /// Underlyin System Type of the property
         /// </summary>
         public Type SystemType => Type.GetType(SystemTypeName);
+
+        public bool SetAttribute { get; set; }
     }
 }
