@@ -7,6 +7,7 @@ using VL.Core;
 using VL.Core.Diagnostics;
 using Microsoft.ML;
 using System.Linq;
+using System.Reflection.Emit;
 
 namespace VL.ML
 {
@@ -113,7 +114,7 @@ namespace VL.ML
     }
 
     /// <summary>
-    /// Defines a node
+    /// Defines the model of our ML nodes
     /// </summary>
     class ModelDescription : IVLNodeDescription, IInfo
     {
@@ -124,9 +125,13 @@ namespace VL.ML
         string FFullName;
         string FPath;
 
-        // Pins
+        // I/O
         List<ModelPinDescription> inputs = new List<ModelPinDescription>();
         List<ModelPinDescription> outputs = new List<ModelPinDescription>();
+
+        // Type factory stuff
+        List<DynamicProperty> inputTypeProperties = new List<DynamicProperty>();
+        List<DynamicProperty> outputTypeProperties = new List<DynamicProperty>();
 
         public ModelDescription(IVLNodeDescriptionFactory factory, string path)
         {
@@ -147,11 +152,11 @@ namespace VL.ML
             // Load the model and create input pins
             try
             {
-                var mlContext = new MLContext();
+                mlContext = new MLContext();
                 DataViewSchema predictionPipeline;
                 ITransformer trainedModel = mlContext.Model.Load(FPath, out predictionPipeline);
 
-                FSummary = "A model";
+                FSummary = "An ML.NET model";
 
                 Type type = typeof(object);
                 object dflt = "";
@@ -186,9 +191,18 @@ namespace VL.ML
 
         public IVLNodeDescriptionFactory Factory { get; }
 
+
+        public Type InputType { get; set; }
+        public Type OutputType { get; set; }
+
         public string Name { get; }
         public string Category => "ML.MLNet";
         public bool Fragmented => false;
+
+        /// <summary>
+        /// Returns the MLContext
+        /// </summary>
+        public MLContext mlContext { get; set; }
 
         /// <summary>
         /// Returns the input pins
@@ -280,12 +294,54 @@ namespace VL.ML
             this.description = description;
             Inputs = description.Inputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
             Outputs = description.Outputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
+
+            #region Retrieve ML Context
+
+            MLContext = description.mlContext;
+
+            #endregion Retrieve ML Context
+
+            #region Type Generation
+            var factory = new DynamicTypeFactory();
+
+            // Create type for input data
+            var inputTypeProperties = new List<DynamicProperty>();
+            foreach (var input in description.Inputs.Where(i => i.Name != "Predict"))
+            {
+                inputTypeProperties.Add(new DynamicProperty
+                {
+                    PropertyName = input.Name,
+                    DisplayName = input.Name,
+                    SystemTypeName = input.Type.ToString()
+                });
+            }
+
+            var inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+
+            // Create type for output data
+            var outputTypeProperties = new List<DynamicProperty>();
+            foreach (var output in description.Outputs)
+            {
+                outputTypeProperties.Add(new DynamicProperty
+                {
+                    PropertyName = output.Name,
+                    DisplayName = output.Name,
+                    SystemTypeName = output.Type.ToString()
+                });
+            }
+
+            var outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
+            #endregion TypeGeneration
+
+            // Create the PredictionEngine
+            description.mlContext.Model.CreatePredictionEngine<>
         }
 
         public IVLNodeDescription NodeDescription => description;
 
         public IVLPin[] Inputs { get; }
         public IVLPin[] Outputs { get; }
+        public MLContext MLContext { get; }
 
         public void Update()
         {
@@ -294,7 +350,15 @@ namespace VL.ML
 
             if((bool)Inputs.Last().Value)
             {
-                Console.WriteLine("Coucou");
+                // Stuff an object with data from our output pins
+
+                // Create an object holding our result
+
+                // Run the prediction engine
+
+                // Retrieve the result of the prediction engine and assign it to the output pin
+
+                // Debug stuff
             }
         }
 
@@ -302,5 +366,15 @@ namespace VL.ML
         {
             Console.Write("Ok bye");
         }
+    }
+
+    class InputData
+    {
+        // Will this work?
+    }
+
+    class OutputData
+    {
+
     }
 }
