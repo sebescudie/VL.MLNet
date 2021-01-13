@@ -7,7 +7,7 @@ using VL.Core;
 using VL.Core.Diagnostics;
 using Microsoft.ML;
 using System.Linq;
-using System.Reflection.Emit;
+using System.Reflection;
 
 namespace VL.ML
 {
@@ -93,7 +93,7 @@ namespace VL.ML
     }
 
     /// <summary>
-    /// Defines a pin
+    /// Defines a pin's model
     /// </summary>
     class ModelPinDescription : IVLPinDescription, IInfo
     {
@@ -125,13 +125,15 @@ namespace VL.ML
         string FFullName;
         string FPath;
 
+        DataViewSchema predictionPipeline;
+        ITransformer trainedModel;
+
         // I/O
         List<ModelPinDescription> inputs = new List<ModelPinDescription>();
         List<ModelPinDescription> outputs = new List<ModelPinDescription>();
 
-        // Type factory stuff
-        List<DynamicProperty> inputTypeProperties = new List<DynamicProperty>();
-        List<DynamicProperty> outputTypeProperties = new List<DynamicProperty>();
+        // Prediction engine
+        dynamic predictionEngine;
 
         public ModelDescription(IVLNodeDescriptionFactory factory, string path)
         {
@@ -139,6 +141,9 @@ namespace VL.ML
             FFullName = path;
             FPath = path;
             Name = Path.GetFileNameWithoutExtension(path);
+
+            mlContext = new MLContext();
+            trainedModel = mlContext.Model.Load(FPath, out predictionPipeline);
         }
 
         /// <summary>
@@ -152,33 +157,30 @@ namespace VL.ML
             // Load the model and create input pins
             try
             {
-                mlContext = new MLContext();
-                DataViewSchema predictionPipeline;
-                ITransformer trainedModel = mlContext.Model.Load(FPath, out predictionPipeline);
-
-                FSummary = "An ML.NET model";
+                #region Create inputs and outputs
 
                 Type type = typeof(object);
                 object dflt = "";
                 string descr = "";
 
                 // Retrieve the inputs by looking at the prediction pipeline
-                foreach(var input in predictionPipeline)
+                foreach (var input in predictionPipeline)
                 {
                     GetTypeDefaultAndDescription(input, ref type, ref dflt, ref descr);
                     inputs.Add(new ModelPinDescription(input.Name, type, dflt, descr));
                 }
 
                 // Retrieve the output by looking for a "Score" output column
-                // Might only work for regression models for now
                 var scoreColumn = trainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
                 GetTypeDefaultAndDescription(scoreColumn, ref type, ref dflt, ref descr);
                 outputs.Add(new ModelPinDescription(scoreColumn.Name, type, dflt, descr));
 
-
                 // After we've added our inputs from the ML model, we add the Predict bool that will run the prediction
                 inputs.Add(new ModelPinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
 
+                #endregion Create inputs and outputs
+
+                FSummary = "Runs an ML.NET model";
                 FInitialized = true;
             }
             catch(Exception e)
@@ -205,6 +207,45 @@ namespace VL.ML
         public MLContext mlContext { get; set; }
 
         /// <summary>
+        /// Returns the prediction pipeline
+        /// </summary>
+        public DataViewSchema PredictionPipeline
+        {
+            get
+            {
+                return predictionPipeline;
+            }
+        }
+
+        public ITransformer TrainedModel
+        {
+            get
+            {
+                return trainedModel;
+            }
+        }
+
+        /// <summary>
+        /// Returns an instance of the emitted input type
+        /// </summary>
+        public object inputObject { get; set; }
+
+        /// <summary>
+        /// Returns an instance of the emitted output type
+        /// </summary>
+        public object outputObject { get; set; }
+
+        /// <summary>
+        /// Returns the emitted input type
+        /// </summary>
+        public Type inputType { get; set; }
+
+        /// <summary>
+        /// Returns the emitted output type
+        /// </summary>
+        public Type outputType { get; set; }
+
+        /// <summary>
         /// Returns the input pins
         /// </summary>
         public IReadOnlyList<IVLPinDescription> Inputs
@@ -225,6 +266,17 @@ namespace VL.ML
             {
                 Init();
                 return outputs;
+            }
+        }
+
+        /// <summary>
+        /// Returns the prediction engine
+        /// </summary>
+        public dynamic PredictionEngine
+        {
+            get
+            {
+                return predictionEngine;
             }
         }
 
@@ -259,7 +311,7 @@ namespace VL.ML
         }
 
         public string Summary => FSummary;
-        public string Remarks => "Everything you know is wrong";
+        public string Remarks => "";
         public IObservable<object> Invalidated => Observable.Empty<object>();
 
         public IVLNode CreateInstance(NodeContext context)
@@ -278,6 +330,9 @@ namespace VL.ML
         }
     }
 
+    /// <summary>
+    /// Actual node
+    /// </summary>
     class MyNode : VLObject, IVLNode
     {
         class MyPin : IVLPin
@@ -289,24 +344,30 @@ namespace VL.ML
 
         readonly ModelDescription description;
 
+        // Type factory stuff
+        Type inputType;
+        Type outputType;
+        List<DynamicProperty> inputTypeProperties = new List<DynamicProperty>();
+        List<DynamicProperty> outputTypeProperties = new List<DynamicProperty>();
+        
+        // Prediction engine
+        dynamic predictionEngine;
+
         public MyNode(ModelDescription description, NodeContext nodeContext) : base(nodeContext)
         {
             this.description = description;
             Inputs = description.Inputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
             Outputs = description.Outputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
 
-            #region Retrieve ML Context
-
             MLContext = description.mlContext;
-
-            #endregion Retrieve ML Context
 
             #region Type Generation
             var factory = new DynamicTypeFactory();
 
             // Create type for input data
             var inputTypeProperties = new List<DynamicProperty>();
-            foreach (var input in description.Inputs.Where(i => i.Name != "Predict"))
+
+            foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
             {
                 inputTypeProperties.Add(new DynamicProperty
                 {
@@ -316,11 +377,11 @@ namespace VL.ML
                 });
             }
 
-            var inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+            inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
 
             // Create type for output data
             var outputTypeProperties = new List<DynamicProperty>();
-            foreach (var output in description.Outputs)
+            foreach (var output in Outputs.Cast<MyPin>())
             {
                 outputTypeProperties.Add(new DynamicProperty
                 {
@@ -330,11 +391,19 @@ namespace VL.ML
                 });
             }
 
-            var outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
+            outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
+
+            // Create instances of those
+            var inputObject = Activator.CreateInstance(inputType);
+            var outputObject = Activator.CreateInstance(outputType);
             #endregion TypeGeneration
 
-            // Create the PredictionEngine
-            description.mlContext.Model.CreatePredictionEngine<>
+            #region Prediction Engine
+            // Create prediction engine
+            var genericPredictionMethod = description.mlContext.Model.GetType().GetMethod("CreatePredictionEngine", new[] { typeof(ITransformer), typeof(DataViewSchema) });
+            var predictionMethod = genericPredictionMethod.MakeGenericMethod(inputObject.GetType(), outputObject.GetType());
+            predictionEngine = predictionMethod.Invoke(description.mlContext.Model, new object[] { description.TrainedModel, description.PredictionPipeline });
+            #endregion Prediction Engine
         }
 
         public IVLNodeDescription NodeDescription => description;
@@ -350,15 +419,21 @@ namespace VL.ML
 
             if((bool)Inputs.Last().Value)
             {
-                // Stuff an object with data from our output pins
+                // Create an object that will hold our data
+                var inputObject = Activator.CreateInstance(inputType);
 
-                // Create an object holding our result
+                // Stuff our input object with data from our input pins
+                foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
+                {
+                    inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
+                }
 
                 // Run the prediction engine
+                // var result = predictionEngine.Predict(inputObject);
+                // Console.Write(result);
 
                 // Retrieve the result of the prediction engine and assign it to the output pin
 
-                // Debug stuff
             }
         }
 
@@ -366,15 +441,5 @@ namespace VL.ML
         {
             Console.Write("Ok bye");
         }
-    }
-
-    class InputData
-    {
-        // Will this work?
-    }
-
-    class OutputData
-    {
-
     }
 }
