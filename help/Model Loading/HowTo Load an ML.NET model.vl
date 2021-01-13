@@ -15,7 +15,7 @@
       </p:NodeReference>
       <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
         <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
-          <Node Bounds="427,331" Id="LHTamiLtGwOOIgdmlOvnPL">
+          <Node Bounds="427,434,145,19" Id="LHTamiLtGwOOIgdmlOvnPL">
             <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="ML" />
@@ -30,8 +30,9 @@
             <Pin Id="KcfuuuWXc7mPu4crUjwJFJ" Name="PaymentType" Kind="InputPin" />
             <Pin Id="MwFcAuA5iRpLjaM8pnjLFw" Name="FareAmount" Kind="InputPin" />
             <Pin Id="JYn7B2ea23HMqy3RJIdwON" Name="Predict" Kind="InputPin" />
+            <Pin Id="SpNO2pYsWanQMLxWlGOlGo" Name="Score" Kind="OutputPin" />
           </Node>
-          <Pad Id="JokZe923hHPOVd7VcLIiq1" Comment="Predict" Bounds="569,312,35,15" ShowValueBox="true" isIOBox="true" Value="False">
+          <Pad Id="JokZe923hHPOVd7VcLIiq1" Comment="Predict" Bounds="569,413,35,15" ShowValueBox="true" isIOBox="true" Value="False">
             <p:TypeAnnotation>
               <Choice Kind="TypeFlag" Name="Boolean" />
               <FullNameCategoryReference ID="Primitive" />
@@ -39,6 +40,41 @@
             <p:ValueBoxSettings>
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="AavrMG5PLZ9PMJiApPhw6v" Comment="VendorId" Bounds="432,253,35,15" ShowValueBox="true" isIOBox="true" Value="Uber">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="ADWjIDNvMCrPohtkyWhsvb" Comment="RateCode" Bounds="452,278,35,15" ShowValueBox="true" isIOBox="true" Value="C1">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Iv4H5T3kcExNHuMnbvVRcf" Comment="PassengerCount" Bounds="471,298,35,15" ShowValueBox="true" isIOBox="true" Value="10">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="QN5VWnrla6tQMAHXD2TWTL" Comment="TripTime" Bounds="490,321,35,15" ShowValueBox="true" isIOBox="true" Value="120">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="EfCeBvl9F3YMdDY4KybIaw" Comment="TripDistance" Bounds="510,345,35,15" ShowValueBox="true" isIOBox="true" Value="13">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="SCzIdcE0rZ1MQBP25baf0u" Comment="PaymentType" Bounds="529,369,35,15" ShowValueBox="true" isIOBox="true" Value="CRD">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="TrkivhbJpTCNXYKj3iYT3Y" Comment="FareAmount" Bounds="549,391,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
           </Pad>
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
@@ -48,6 +84,13 @@
           <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
         </ProcessDefinition>
         <Link Id="A3eyOlrJsiQNyZJiPOiCMt" Ids="JokZe923hHPOVd7VcLIiq1,JYn7B2ea23HMqy3RJIdwON" />
+        <Link Id="KWkcmH4E03iMMXNQPVPiDo" Ids="AavrMG5PLZ9PMJiApPhw6v,P5x5foCve1QMJno8IIisg8" />
+        <Link Id="QfK7geSAONKMZAt2c9chso" Ids="ADWjIDNvMCrPohtkyWhsvb,VbL334NIUJAN1GEddtlHxW" />
+        <Link Id="V6LGODZlRjIQIpOKZ8h13g" Ids="Iv4H5T3kcExNHuMnbvVRcf,HPDXIJjrWkGOaqrrMmvmHd" />
+        <Link Id="G1NpCVx74LlMJ6l408XRji" Ids="QN5VWnrla6tQMAHXD2TWTL,Ci8WvokehLPLb9na1UqUAf" />
+        <Link Id="C1rqTfp5xDcNWiBynpuc1z" Ids="EfCeBvl9F3YMdDY4KybIaw,ASTFsS9BMMvPMiryuiObR5" />
+        <Link Id="H7T0m1oDP0rLFxhAmIwuBa" Ids="SCzIdcE0rZ1MQBP25baf0u,KcfuuuWXc7mPu4crUjwJFJ" />
+        <Link Id="Pj6hzqSzoNANmEEEFZ8HAQ" Ids="TrkivhbJpTCNXYKj3iYT3Y,MwFcAuA5iRpLjaM8pnjLFw" />
       </Patch>
     </Node>
   </Patch>
