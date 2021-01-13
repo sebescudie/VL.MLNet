@@ -76,6 +76,35 @@
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
+          <Node Bounds="442,543,205,19" Id="MHUCcFz1DFhLocEImyLgxg">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="ML" />
+              <CategoryReference Kind="Category" Name="MLNet" />
+              <Choice Kind="ProcessNode" Name="HouseValue" />
+            </p:NodeReference>
+            <Pin Id="FxTAXRt1nDvP6uQqVthytL" Name="longitude" Kind="InputPin" />
+            <Pin Id="Tm12snNLgVbOKOSvTw6031" Name="latitude" Kind="InputPin" />
+            <Pin Id="SywrckNQFQJOrR3aRft8Gx" Name="housing_median_age" Kind="InputPin" />
+            <Pin Id="NKaIiZnYDdoOhu5KzcYVSd" Name="total_rooms" Kind="InputPin" />
+            <Pin Id="MIQ8i38odf5Lv4EK6rJ8A1" Name="total_bedrooms" Kind="InputPin" />
+            <Pin Id="U0tLBoTe1epOmn9qRncoi2" Name="population" Kind="InputPin" />
+            <Pin Id="QX92O4xqWj7NzjgGwl5caX" Name="households" Kind="InputPin" />
+            <Pin Id="MRVyuFimo9XN9rJt0GYere" Name="median_income" Kind="InputPin" />
+            <Pin Id="UOuvTCYcvYcNPqPcWLP8ou" Name="median_house_value" Kind="InputPin" />
+            <Pin Id="Kywf4fe9VFqMoyS4haslVD" Name="ocean_proximity" Kind="InputPin" />
+            <Pin Id="PfvPJPCraNTPpd0gllIdXX" Name="Predict" Kind="InputPin" />
+            <Pin Id="TTez3QZyAADMGPa9U27Vwp" Name="Score" Kind="OutputPin" />
+          </Node>
+          <Pad Id="ROsseAkt85vLU0kzb5Wqxd" Comment="Predict" Bounds="645,522,35,15" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="Boolean" />
+              <FullNameCategoryReference ID="Primitive" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -91,6 +120,7 @@
         <Link Id="C1rqTfp5xDcNWiBynpuc1z" Ids="EfCeBvl9F3YMdDY4KybIaw,ASTFsS9BMMvPMiryuiObR5" />
         <Link Id="H7T0m1oDP0rLFxhAmIwuBa" Ids="SCzIdcE0rZ1MQBP25baf0u,KcfuuuWXc7mPu4crUjwJFJ" />
         <Link Id="Pj6hzqSzoNANmEEEFZ8HAQ" Ids="TrkivhbJpTCNXYKj3iYT3Y,MwFcAuA5iRpLjaM8pnjLFw" />
+        <Link Id="K8LT9HmqrK6O3E2aFg3RJK" Ids="ROsseAkt85vLU0kzb5Wqxd,PfvPJPCraNTPpd0gllIdXX" />
       </Patch>
     </Node>
   </Patch>
