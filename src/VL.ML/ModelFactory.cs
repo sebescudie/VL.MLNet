@@ -373,7 +373,8 @@ namespace VL.ML
                 {
                     PropertyName = input.Name,
                     DisplayName = input.Name,
-                    SystemTypeName = input.Type.ToString()
+                    SystemTypeName = input.Type.ToString(),
+                    SetAttribute = false
                 });
             }
 
@@ -387,7 +388,8 @@ namespace VL.ML
                 {
                     PropertyName = output.Name,
                     DisplayName = output.Name,
-                    SystemTypeName = output.Type.ToString()
+                    SystemTypeName = output.Type.ToString(),
+                    SetAttribute = true
                 });
             }
 
@@ -419,24 +421,23 @@ namespace VL.ML
 
             if((bool)Inputs.Last().Value)
             {
-                // Create an object that will hold our data
+                // Create an input object that will hold our pin's data
                 var inputObject = Activator.CreateInstance(inputType);
 
-                // Stuff our input object with data from our input pins
+                // Stuff our input object with input pin's data
                 foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
                 {
                     inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
                 }
 
                 // Run the prediction engine
-                // var result = predictionEngine.Predict(inputObject);
-                // Console.Write(result);
+                var result = predictionEngine.Predict(inputObject);
+                Console.WriteLine(outputType.InvokeMember("FareAmount", BindingFlags.GetProperty, null, result, new object[] { }));
 
                 // Retrieve the result of the prediction engine and assign it to the output pin
 
             }
         }
-
         public void Dispose()
         {
             Console.Write("Ok bye");
