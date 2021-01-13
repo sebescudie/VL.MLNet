@@ -195,7 +195,7 @@ namespace VL.ML
         public Type OutputType { get; set; }
 
         public string Name { get; }
-        public string Category => "ML.MLNet";
+        public string Category => "ML.Runners";
         public bool Fragmented => false;
 
         /// <summary>
@@ -214,6 +214,9 @@ namespace VL.ML
             }
         }
 
+        /// <summary>
+        /// Returns the trained model
+        /// </summary>
         public ITransformer TrainedModel
         {
             get
@@ -221,16 +224,6 @@ namespace VL.ML
                 return trainedModel;
             }
         }
-
-        /// <summary>
-        /// Returns an instance of the emitted input type
-        /// </summary>
-        public object inputObject { get; set; }
-
-        /// <summary>
-        /// Returns an instance of the emitted output type
-        /// </summary>
-        public object outputObject { get; set; }
 
         /// <summary>
         /// Returns the emitted input type
@@ -416,8 +409,10 @@ namespace VL.ML
                     inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
                 }
 
+                var outputObject = Activator.CreateInstance(outputType);
+
                 // Run the prediction engine
-                var result = predictionEngine.Predict(inputObject);
+                var result = predictionEngine.Predict(inputObject, ref outputObject);
                 Console.WriteLine(outputType.InvokeMember("FareAmount", BindingFlags.GetProperty, null, result, new object[] { }));
 
                 // Retrieve the result of the prediction engine and assign it to the output pin
