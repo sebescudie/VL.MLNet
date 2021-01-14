@@ -352,8 +352,7 @@ namespace VL.ML
                 {
                     PropertyName = input.Name,
                     DisplayName = input.Name,
-                    SystemTypeName = input.Type.ToString(),
-                    SetAttribute = false
+                    SystemTypeName = input.Type.ToString()
                 });
             }
 
@@ -367,8 +366,7 @@ namespace VL.ML
                 {
                     PropertyName = output.Name,
                     DisplayName = output.Name,
-                    SystemTypeName = output.Type.ToString(),
-                    SetAttribute = true
+                    SystemTypeName = output.Type.ToString()
                 });
             }
 
