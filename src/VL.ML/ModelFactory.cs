@@ -409,11 +409,9 @@ namespace VL.ML
                     inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
                 }
 
-                var outputObject = Activator.CreateInstance(outputType);
-
                 // Run the prediction engine
-                var result = predictionEngine.Predict(inputObject, ref outputObject);
-                Console.WriteLine(outputType.InvokeMember("FareAmount", BindingFlags.GetProperty, null, result, new object[] { }));
+                var result = predictionEngine.Predict(inputObject);
+                Console.WriteLine(outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { }));
 
                 // Retrieve the result of the prediction engine and assign it to the output pin
 
