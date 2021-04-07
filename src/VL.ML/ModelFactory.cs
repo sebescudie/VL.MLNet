@@ -407,12 +407,13 @@ namespace VL.ML
                     inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
                 }
 
-                // Run the prediction engine
-                var result = predictionEngine.Predict(inputObject);
-                Console.WriteLine(outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { }));
+                // Invoke the predict method
+                var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
+                var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
 
-                // Retrieve the result of the prediction engine and assign it to the output pin
-
+                // Look for the "Score" output pin and assign it the value return by the prediction
+                var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
+                outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
             }
         }
         public void Dispose()
