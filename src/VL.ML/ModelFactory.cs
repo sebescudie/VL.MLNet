@@ -14,9 +14,12 @@ namespace VL.ML
     public class MLFactory : IVLNodeDescriptionFactory
     {
         const string mlSubDir = "ml-models";
+        const string identifier = "VL.MLNet-Factory";
 
         public readonly string Dir;
         public readonly string DirToWatch;
+
+        private readonly NodeFactoryCache factoryCache = new NodeFactoryCache();
         
         public MLFactory(string directory = default, string directoryToWatch = default)
         {
@@ -50,10 +53,10 @@ namespace VL.ML
         {
             get
             {
-                var i = "VL.MLNet-Factory";
                 if (Dir != null)
-                    return $"{i} ({Dir})";
-                return i;
+                    return GetIdentifierForPath(Dir);
+                else
+                    return identifier;
             }
         }
 
@@ -80,15 +83,21 @@ namespace VL.ML
 
         public void Export(ExportContext exportContext)
         {
-            // Required by the interface
+
         }
+
+        string GetIdentifierForPath(string path) => $"{identifier} ({path})";
 
         public IVLNodeDescriptionFactory ForPath(string path)
         {
-            var modelsDir = Path.Combine(path, mlSubDir);
-            if (Directory.Exists(modelsDir))
-                return new MLFactory(modelsDir);
-            return new MLFactory(directoryToWatch: path);
+            var identifier = GetIdentifierForPath(path);
+            return factoryCache.GetOrAdd(identifier, () =>
+            {
+                var mldir = Path.Combine(path, mlSubDir);
+                if (System.IO.Directory.Exists(mldir))
+                    return new MLFactory(mldir);
+                return new MLFactory(directoryToWatch: path);
+            });
         }
     }
 
