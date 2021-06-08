@@ -102,27 +102,6 @@ namespace VL.ML
     }
 
     /// <summary>
-    /// Defines a pin's model
-    /// </summary>
-    class ModelPinDescription : IVLPinDescription, IInfo
-    {
-        public string Name { get; }
-        public Type Type { get; }
-        public object DefaultValue { get; }
-
-        public string Summary { get; }
-        public string Remarks => "";
-
-        public ModelPinDescription(string name, Type type, object defaultValue, string summary)
-        {
-            Name = name;
-            Type = type;
-            DefaultValue = defaultValue;
-            Summary = summary;
-        }
-    }
-
-    /// <summary>
     /// Defines the model of our ML nodes
     /// </summary>
     class ModelDescription : IVLNodeDescription, IInfo
@@ -138,8 +117,8 @@ namespace VL.ML
         ITransformer trainedModel;
 
         // I/O
-        List<ModelPinDescription> inputs = new List<ModelPinDescription>();
-        List<ModelPinDescription> outputs = new List<ModelPinDescription>();
+        List<PinDescription> inputs = new List<PinDescription>();
+        List<PinDescription> outputs = new List<PinDescription>();
 
         public ModelDescription(IVLNodeDescriptionFactory factory, string path)
         {
@@ -163,6 +142,7 @@ namespace VL.ML
             // Load the model and create input pins
             try
             {
+
                 #region Create inputs and outputs
 
                 Type type = typeof(object);
@@ -173,16 +153,16 @@ namespace VL.ML
                 foreach (var input in predictionPipeline)
                 {
                     GetTypeDefaultAndDescription(input, ref type, ref dflt, ref descr);
-                    inputs.Add(new ModelPinDescription(input.Name, type, dflt, descr));
+                    inputs.Add(new PinDescription(input.Name, type, dflt, descr));
                 }
 
                 // Retrieve the output by looking for a "Score" output column
                 var scoreColumn = trainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
                 GetTypeDefaultAndDescription(scoreColumn, ref type, ref dflt, ref descr);
-                outputs.Add(new ModelPinDescription(scoreColumn.Name, type, dflt, descr));
+                outputs.Add(new PinDescription(scoreColumn.Name, type, dflt, descr));
 
                 // After we've added our inputs from the ML model, we add the Predict bool that will run the prediction
-                inputs.Add(new ModelPinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
+                inputs.Add(new PinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
 
                 #endregion Create inputs and outputs
 
@@ -363,6 +343,17 @@ namespace VL.ML
                     DisplayName = input.Name,
                     SystemTypeName = input.Type.ToString()
                 });
+            }
+
+            if (MLContext.Regression != null)
+            {
+                Console.WriteLine(description.Name);
+                Console.WriteLine("This is regression");
+            }
+            else if (MLContext.MulticlassClassification != null || MLContext.BinaryClassification != null)
+            {
+                Console.WriteLine(description.Name);
+                Console.WriteLine("This is classification");
             }
 
             inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
