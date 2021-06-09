@@ -128,8 +128,51 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="JmI4MzRMjOJLXRnTZxzK9Y" Comment="Predicted Label" Bounds="686,625,81,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="SINrTkFPSzUOEI3ZS5fs3x" Comment="Score" Bounds="761,699,35,17" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="JmI4MzRMjOJLXRnTZxzK9Y" Comment="Predicted Label" Bounds="687,630,81,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="SINrTkFPSzUOEI3ZS5fs3x" Comment="Score" Bounds="804,676,65,80" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="473,1113,61,19" Id="E6WcZy0FOxZMOPGr4EzYFs">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="FakeNews" />
+            </p:NodeReference>
+            <Pin Id="TlNyj0XNHxHLPymSaYvJtS" Name="title" Kind="InputPin" />
+            <Pin Id="QQG9r6xX2lnNAPCIbLDZwz" Name="text" Kind="InputPin" />
+            <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
+            <Pin Id="IJZuCHTGGvxLwnGGrsZxQ6" Name="Predicted Label" Kind="OutputPin" />
+            <Pin Id="HjJvjeJwOzqOXtiMJyzMH4" Name="Score" Kind="OutputPin" />
+          </Node>
+          <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="531,1149,106,95" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="UB0QXVvXCH0LoYJgOW7Rb1" Comment="Predicted Label" Bounds="475,1255,127,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="HnJZOahTuWCNzrDBwwtWTR" Comment="title" Bounds="475,884,305,8" ShowValueBox="true" isIOBox="true" Value="White House drops Trump orders trying to ban TikTok, WeChat">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="BO9fKgFZQatQc66VhaFzG8" Comment="text" Bounds="503,912,193,175" ShowValueBox="true" isIOBox="true" Value="Officials say the White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China. A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ personal data or have connections to Chinese military or intelligence activities.&#xD;&#xA;WASHINGTON (AP) — The White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China, officials said Wednesday.&#xD;&#xA;&#xD;&#xA;A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ persona data or have connections to Chinese military or intelligence activities.&#xD;&#xA;&#xD;&#xA;The department also will make recommendations on how to further protect Americans’ genetic and personal health information, and will address the risks of certain software apps connected to China or other adversaries, according to senior administration officials.&#xD;&#xA;&#xD;&#xA;The Biden administration’s move reflects the ongoing concern that Americans’ personal data could be exposed by popular apps tied to China, a chief U.S. economic and political rival. The White House and Congress have both taken action to address Beijing’s technological advancement. On Tuesday, the Senate passed a bill that aims to boost U.S. semiconductor production and the development of artificial intelligence and other technology in the face of growing international competition.&#xD;&#xA;&#xD;&#xA;The administration earlier this year had backed off President Donald Trump’s attempts to ban the popular video app TikTok, asking a court to postpone a legal dispute as the government began a broader review of the national security threats posed by Chinese technology companies.&#xD;&#xA;&#xD;&#xA;A court filing said the Commerce Department was reviewing whether Trump’s claims about TikTok’s threat to national security justified the attempts to ban it from smartphone app stores and deny it vital technical services. An update to the review was due in a court case later this week.&#xD;&#xA;&#xD;&#xA;Also in limbo has been a proposed U.S. takeover of TikTok. Last year, the Trump administration brokered a deal that would have had U.S. corporations Oracle and Walmart take a large stake in the Chinese-owned app on national security grounds.&#xD;&#xA;&#xD;&#xA;The unusual arrangement stemmed from a Trump executive order that aimed to ban TikTok in the U.S. unless it accepted a greater degree of American control.&#xD;&#xA;&#xD;&#xA;Trump targeted TikTok over the summer of 2020 with a series of orders that cited concerns over the U.S. data that TikTok collects from its users. Courts temporarily blocked the White House’s attempted ban, and the presidential election soon overshadowed the TikTok fight.&#xD;&#xA;&#xD;&#xA;TikTok has been looking to the U.S. Court of Appeals for the District of Columbia Circuit to review Trump’s divestment order and the government’s national security review.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Gu2g344eMTwP0m6iP98J6P" Comment="Predict" Bounds="531,1098,35,16" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="Boolean" />
+              <FullNameCategoryReference ID="Primitive" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="871,1113,61,19" Id="RlU9xQT61FbPqYrbQqJ9UT">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="FakeNews" />
+            </p:NodeReference>
+            <Pin Id="MgYBvCNHyQDLVt0rCLNLu6" Name="title" Kind="InputPin" />
+            <Pin Id="Uja4MhErpLqNigMLO5Yq8S" Name="text" Kind="InputPin" />
+            <Pin Id="Od2jJxQDOnXPIl3xRLMylm" Name="Predict" Kind="InputPin" />
+            <Pin Id="IORt48b7eQROseImpASS1t" Name="Predicted Label" Kind="OutputPin" />
+            <Pin Id="FNcIl5HhTWgOFJdCZxruAy" Name="Score" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -154,6 +197,11 @@
         <Link Id="UdknoLbRq3EPpOdnLB66Se" Ids="Vu9Aa0AbonMN8AVCuSG9x2,H9JoH4nJkTwOIeMyYonTJr" />
         <Link Id="Ac6i2wctuXiNMubYRuNPUh" Ids="LJ9RffP8L4VO8WZNVn9QSt,JmI4MzRMjOJLXRnTZxzK9Y" />
         <Link Id="VGJz42vyLlIO3ihtrqU6cH" Ids="Pg4YYXuFFuzP1bHqtQLQAG,SINrTkFPSzUOEI3ZS5fs3x" />
+        <Link Id="HPif4TdTVnnNhEp39RUhMR" Ids="HjJvjeJwOzqOXtiMJyzMH4,SHboIlaOkdpNn50dZCsh4S" />
+        <Link Id="RcvKyFJRfHrO3JPofykLGW" Ids="IJZuCHTGGvxLwnGGrsZxQ6,UB0QXVvXCH0LoYJgOW7Rb1" />
+        <Link Id="CW5c6EmdHTdLsDi6qASZAB" Ids="HnJZOahTuWCNzrDBwwtWTR,TlNyj0XNHxHLPymSaYvJtS" />
+        <Link Id="IvTMRYeBI14OhRPjkXcWU8" Ids="BO9fKgFZQatQc66VhaFzG8,QQG9r6xX2lnNAPCIbLDZwz" />
+        <Link Id="FXHqn92zd5lPEVARrT0MQc" Ids="Gu2g344eMTwP0m6iP98J6P,NTHS0R3140iMkG6XNsaCRW" />
       </Patch>
     </Node>
   </Patch>
