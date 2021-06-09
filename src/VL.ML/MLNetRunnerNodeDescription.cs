@@ -22,7 +22,7 @@ namespace VL.ML
         string FFullName;
         string FFriendlyName;
 
-        private string FModelType;
+        public string FModelType { get; set; }
         private DataViewSchema predictionPipeline;
         
         public ITransformer TrainedModel { get; set; }
@@ -77,6 +77,10 @@ namespace VL.ML
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
                     GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
                     outputs.Add(new PinDescription("Predicted Label", type, dflt, descr));
+
+                    //var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
+                    //GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
+                    //outputs.Add(new PinDescription("Score", type, dflt, descr));
                 }
                 else if(FModelType == "Regression")
                 {
@@ -102,6 +106,7 @@ namespace VL.ML
                     // Unknown model type
                 }
 
+                
                 // Add the Trigger input that will allow to trigger the node
                 inputs.Add(new PinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
                 #endregion Create inputs and outputs
@@ -193,11 +198,16 @@ namespace VL.ML
                 type = typeof(float);
                 dflt = 0.0f;
             }
-            else if (pin.Type.ToString() == "System.Single[]")
-            {
-                type = typeof(IEnumerable<float>);
-                dflt = Enumerable.Repeat<float>(0, 0).ToArray();
-            }
+            //else if (pin.Type == "System.Single[]")
+            //{
+            //    type = typeof(IEnumerable<float>);
+            //    dflt = Enumerable.Repeat<float>(0, 0).ToArray();
+            //}
+            //else if (pin.Type.ToString() == "Vector<Single, 4>")
+            //{
+            //    type = typeof(IEnumerable<float>);
+            //    dflt = Enumerable.Repeat<float>(0, 0).ToArray();
+            //}
         }
 
         public string Summary => FSummary;

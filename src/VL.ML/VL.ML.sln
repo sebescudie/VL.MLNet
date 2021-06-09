@@ -13,16 +13,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		gamma_debug|Any CPU = gamma_debug|Any CPU
+		gamma_debug|x64 = gamma_debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Debug|x64.ActiveCfg = Debug|x64
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Debug|x64.Build.0 = Debug|x64
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.gamma_debug|Any CPU.ActiveCfg = gamma_debug|Any CPU
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.gamma_debug|Any CPU.Build.0 = gamma_debug|Any CPU
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.gamma_debug|x64.ActiveCfg = gamma_debug|x64
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.gamma_debug|x64.Build.0 = gamma_debug|x64
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Release|x64.ActiveCfg = Release|x64
+		{B21F58DA-BA8D-4EF1-BDF9-320B838D41E8}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

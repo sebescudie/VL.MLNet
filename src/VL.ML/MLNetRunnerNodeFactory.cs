@@ -133,43 +133,89 @@ namespace VL.ML
             #region Type Generation
             var factory = new DynamicTypeFactory();
 
-            // --------------------------------------------------
-            // INPUT TYPE CREATION
-            // --------------------------------------------------
-
             var inputTypeProperties = new List<DynamicProperty>();
-
-            // Look at the pre-trained model and generate a type
-            foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
-            {
-                inputTypeProperties.Add(new DynamicProperty
-                {
-                    PropertyName = input.Name,
-                    DisplayName = input.Name,
-                    SystemTypeName = input.Type.ToString()
-                });
-            }
-
-            inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
-
-            // Create type for output data
             var outputTypeProperties = new List<DynamicProperty>();
-            
-            foreach (var output in Outputs.Cast<MyPin>())
+
+            Type type = typeof(object);
+
+            // Look at the pre-trained model and generate a type from it
+            // Do not generate it based on the input pins
+            // because they won't match what ML.NET expects
+            if (description.FModelType == "Classification")
             {
+                // Classification input and output classes are hardcoded
+                // since they don't change no matter the model
+                foreach(var inputColumn in description.PredictionPipeline)
+                {
+                    GetType(inputColumn, ref type);
+
+                    inputTypeProperties.Add(new DynamicProperty
+                    {
+                        PropertyName = inputColumn.Name,
+                        DisplayName = inputColumn.Name,
+                        SystemTypeName = type.ToString()
+                    }) ;
+                }
+
+                foreach (var outputColumn in description.TrainedModel.GetOutputSchema(description.PredictionPipeline))
+                {
+                    GetType(outputColumn, ref type);
+
+                    outputTypeProperties.Add(new DynamicProperty
+                    {
+                        PropertyName = outputColumn.Name,
+                        DisplayName = outputColumn.Name,
+                        SystemTypeName = type.ToString()
+                    });
+                }
+
+                inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+                outputType = typeof(TextClassificationOutput);
+            }
+            else if(description.FModelType == "Regression")
+            {
+                foreach (var inputColumn in description.PredictionPipeline)
+                {
+                    GetType(inputColumn, ref type);
+
+                    inputTypeProperties.Add(new DynamicProperty
+                    {
+                        PropertyName = inputColumn.Name,
+                        DisplayName = inputColumn.Name,
+                        SystemTypeName = type.ToString()
+                    }) ;
+                }
+
+                var scoreColumn = description.TrainedModel.GetOutputSchema(description.PredictionPipeline).FirstOrDefault(o => o.Name == "Score");
+                
+                GetType(scoreColumn, ref type);
+                
                 outputTypeProperties.Add(new DynamicProperty
                 {
-                    PropertyName = output.Name,
-                    DisplayName = output.Name,
-                    SystemTypeName = output.Type.ToString()
+                    PropertyName = scoreColumn.Name,
+                    DisplayName = scoreColumn.Name,
+                    SystemTypeName = type.ToString()
                 });
+
+                inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+                outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
+
+            }
+            else if(description.FModelType == "ImageClassification")
+            {
+                return;
+            }
+            else
+            {
+                return;
             }
 
-            outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
-
-            // Create instances of those
+            // Spawn instances of those
+            // We actually just use those to spawn the dynamic prediction engine
+            // Could we re-use them instead?
             var inputObject = Activator.CreateInstance(inputType);
             var outputObject = Activator.CreateInstance(outputType);
+            
             #endregion TypeGeneration
 
             #region Prediction Engine
@@ -178,6 +224,18 @@ namespace VL.ML
             var predictionMethod = genericPredictionMethod.MakeGenericMethod(inputObject.GetType(), outputObject.GetType());
             predictionEngine = predictionMethod.Invoke(description.MLContext.Model, new object[] { description.TrainedModel, description.PredictionPipeline });
             #endregion Prediction Engine
+        }
+
+        private static void GetType(dynamic input, ref Type type)
+        {
+            if (input.Type.ToString() == "String")
+            {
+                type = typeof(string);
+            }
+            else if (input.Type.ToString() == "Single")
+            {
+                type = typeof(float);
+            }
         }
 
         public IVLNodeDescription NodeDescription => description;
@@ -196,19 +254,46 @@ namespace VL.ML
                 // Create an input object that will hold our pin's data
                 var inputObject = Activator.CreateInstance(inputType);
 
-                // Stuff our input object with input pin's data
-                foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
+                if(description.FModelType == "Classification")
                 {
-                    inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
+                    // We know the input pin is named "Input", so we take its value and
+                    // stuff it in the Input property of our dynamic object
+                    var inputPin = Inputs.Cast<MyPin>().FirstOrDefault(i => i.Name == "Input");
+                    inputType.InvokeMember(inputPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { inputPin.Value });
+
+                    // Invoke the predict method
+                    var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
+                    var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
+
+                    // Look for the "Predicted Label" input pin, and assign it the value of the "PredictedLabel" field of the output type
+                    var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Predicted Label");
+                    outputPin.Value = outputType.InvokeMember("PredictedLabel", BindingFlags.GetProperty, null, result, new object[] { });
                 }
+                else if(description.FModelType == "Regression")
+                {
+                    // We're looking at a regression, for now we just have a one to one mapping
+                    // We'll need to find a way to get rid if the Label input later
+                    foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
+                    {
+                        inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
+                    }
 
-                // Invoke the predict method
-                var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
-                var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
+                    // Invoke the predict method
+                    var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
+                    var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
 
-                // Look for the "Score" output pin and assign it the value return by the prediction
-                var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
-                outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
+                    // Look for the "Score" output pin and assign it the value return by the prediction
+                    var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
+                    outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
+                }
+                else if(description.FModelType == "ImageRecognition")
+                {
+                    return;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
         public void Dispose()

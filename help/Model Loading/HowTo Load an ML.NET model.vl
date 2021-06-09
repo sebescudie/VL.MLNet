@@ -46,12 +46,12 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="CMwZ0wRZwkHNiPHSYpHoKU" Comment="fixed acidity" Bounds="349,244,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="CMwZ0wRZwkHNiPHSYpHoKU" Comment="fixed acidity" Bounds="349,244,35,15" ShowValueBox="true" isIOBox="true" Value="7.4">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="E14xog5cGYrLhlni4vqlBR" Comment="volatile acidity" Bounds="369,263,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="E14xog5cGYrLhlni4vqlBR" Comment="volatile acidity" Bounds="369,263,35,15" ShowValueBox="true" isIOBox="true" Value="0.7">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
@@ -61,47 +61,73 @@
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="DcsdI3lClHeNSUcogVnGdL" Comment="residual sugar" Bounds="409,311,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="DcsdI3lClHeNSUcogVnGdL" Comment="residual sugar" Bounds="409,311,35,15" ShowValueBox="true" isIOBox="true" Value="1.9">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="KfPLV37rK9gQB1UbAcUwUg" Comment="chlorides" Bounds="431,335,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="KfPLV37rK9gQB1UbAcUwUg" Comment="chlorides" Bounds="431,335,35,15" ShowValueBox="true" isIOBox="true" Value="0.076">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Tf1nq29SObHMfr1YLwexYz" Comment="free sulfur dioxide" Bounds="450,361,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="Tf1nq29SObHMfr1YLwexYz" Comment="free sulfur dioxide" Bounds="450,361,35,15" ShowValueBox="true" isIOBox="true" Value="11">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="RnWJvhfjEylNzrxxWIjuKt" Comment="total sulfur dioxide" Bounds="470,395,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="RnWJvhfjEylNzrxxWIjuKt" Comment="total sulfur dioxide" Bounds="470,395,35,15" ShowValueBox="true" isIOBox="true" Value="34">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="BSN0N90NTSnQUzcoSdIRKG" Comment="density" Bounds="490,422,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="BSN0N90NTSnQUzcoSdIRKG" Comment="density" Bounds="490,422,35,15" ShowValueBox="true" isIOBox="true" Value="0.9978">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="T95pMBDcr1ROTCYVrzdH9r" Comment="pH" Bounds="510,447,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="T95pMBDcr1ROTCYVrzdH9r" Comment="pH" Bounds="510,447,35,15" ShowValueBox="true" isIOBox="true" Value="3.51">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Fvm2hrx08EXNJ3BeSLSWgx" Comment="sulphates" Bounds="531,474,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="Fvm2hrx08EXNJ3BeSLSWgx" Comment="sulphates" Bounds="531,474,35,15" ShowValueBox="true" isIOBox="true" Value="0.56">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="S5Arb6Kcv5BNi0UBaCvLcX" Comment="alcohol" Bounds="551,494,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="S5Arb6Kcv5BNi0UBaCvLcX" Comment="alcohol" Bounds="551,494,35,15" ShowValueBox="true" isIOBox="true" Value="9.4">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
           <Pad Id="ApC25azZ0QtLN7TavVMISY" Comment="Score" Bounds="351,572,35,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="684,586,86,19" Id="RJphm6UrdNFL9vhtdQAl7V">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="ML" />
+              <CategoryReference Kind="Category" Name="MLNet" />
+              <Choice Kind="ProcessNode" Name="OffensiveOrNot" />
+            </p:NodeReference>
+            <Pin Id="Gj767pNQnLPPJhZlleIc7d" Name="Input" Kind="InputPin" />
+            <Pin Id="H9JoH4nJkTwOIeMyYonTJr" Name="Predict" Kind="InputPin" />
+            <Pin Id="LJ9RffP8L4VO8WZNVn9QSt" Name="Predicted Label" Kind="OutputPin" />
+          </Node>
+          <Pad Id="G920jxWs8XlMNdlcNwQ4o6" Comment="" Bounds="685,478,125,-9" ShowValueBox="true" isIOBox="true" Value="Life is wonderful">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Vu9Aa0AbonMN8AVCuSG9x2" Comment="Predict" Bounds="767,530,35,35" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="Boolean" />
+              <FullNameCategoryReference ID="Primitive" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="JmI4MzRMjOJLXRnTZxzK9Y" Comment="Predicted Label" Bounds="686,625,81,15" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -122,6 +148,9 @@
         <Link Id="DIWGv2T6Tv9MQtJiWslVJg" Ids="Fvm2hrx08EXNJ3BeSLSWgx,GGskwH6mIbJOZxP5cFnOP7" />
         <Link Id="OT4ngrrlzDaOlPMo8xIREz" Ids="S5Arb6Kcv5BNi0UBaCvLcX,VLShOHShGxbO8En3HbR7q7" />
         <Link Id="GiX8NAbfM6YLuNL7BieE5f" Ids="BgmJ0LsSqZ8NZWumauX5GY,ApC25azZ0QtLN7TavVMISY" />
+        <Link Id="CPM7UcNbZHzLsqxZ773JDN" Ids="G920jxWs8XlMNdlcNwQ4o6,Gj767pNQnLPPJhZlleIc7d" />
+        <Link Id="UdknoLbRq3EPpOdnLB66Se" Ids="Vu9Aa0AbonMN8AVCuSG9x2,H9JoH4nJkTwOIeMyYonTJr" />
+        <Link Id="Ac6i2wctuXiNMubYRuNPUh" Ids="LJ9RffP8L4VO8WZNVn9QSt,JmI4MzRMjOJLXRnTZxzK9Y" />
       </Patch>
     </Node>
   </Patch>
