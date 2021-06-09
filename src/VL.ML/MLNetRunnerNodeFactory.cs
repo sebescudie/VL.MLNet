@@ -256,13 +256,11 @@ namespace VL.ML
 
                 if(description.FModelType == "Classification")
                 {
-                    // We know the input pin is named "Input", so we take its value and
-                    // stuff it in the Input property of our dynamic object
-                    var inputPin = Inputs.Cast<MyPin>().FirstOrDefault(i => i.Name == "Input");
-                    inputType.InvokeMember(inputPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { inputPin.Value });
-
-                    // We know all input pins that are not named "Apply" should be taken into account
-
+                    // We know all input pins that are not named "Predict" should be taken into account
+                    foreach(var dataPin in Inputs.Cast<MyPin>().Where(i => i.Name != "Predict"))
+                    {
+                        inputType.InvokeMember(dataPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { dataPin.Value });
+                    }
 
                     // Invoke the predict method
                     var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
