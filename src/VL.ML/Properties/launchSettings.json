@@ -2,8 +2,8 @@
   "profiles": {
     "VL.ML": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2021.3.2\\vvvv.exe",
-      "commandLineArgs": "-o \"C:\\Users\\seb\\Documents\\dev\\vvvv\\libraries\\VL.ML\\help\\Model Loading\\HowTo Load an ML.NET model.vl\" --package-repositories \"C:\\Users\\seb\\Documents\\dev\\vvvv\\libraries\""
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2021.3.3\\vvvv.exe",
+      "commandLineArgs": "-o \"D:\\documents\\dev\\vvvv\\libraries\\VL.ML\\help\\Model Loading\\HowTo Load an ML.NET model.vl\" --package-repositories \"D:\\documents\\dev\\vvvv\\libraries\""
     },
     "vvvv_debug": {
       "commandName": "Executable"

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="OAlzQNyPoltNwHzPjHO01V" LanguageVersion="2020.3.0.144" Version="0.128">
-  <NugetDependency Id="Kh84isHxThQQN9qVQVgM7e" Location="VL.CoreLib" Version="2020.3.0-0144-g7cfc36f3d3" />
+<Document xmlns:p="property" Id="OAlzQNyPoltNwHzPjHO01V" LanguageVersion="2021.3.3.131" Version="0.128">
+  <NugetDependency Id="Kh84isHxThQQN9qVQVgM7e" Location="VL.CoreLib" Version="2021.3.3" />
   <Patch Id="VlyZ4nntwULMnDR488jJ4J">
     <Canvas Id="OF3xCnDdYWsPwTRPu29xgz" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,7 +15,29 @@
       </p:NodeReference>
       <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
         <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
-          <Pad Id="JokZe923hHPOVd7VcLIiq1" Comment="Predict" Bounds="569,413,35,15" ShowValueBox="true" isIOBox="true" Value="False">
+          <Node Bounds="349,521,245,19" Id="N45ug9pz459LGk43loG3FC">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="ML" />
+              <CategoryReference Kind="Category" Name="MLNet" />
+              <Choice Kind="ProcessNode" Name="WineQuality" />
+            </p:NodeReference>
+            <Pin Id="Je2vpyR6iILQFwMGTAX58h" Name="fixed acidity" Kind="InputPin" />
+            <Pin Id="Ujtvk3ZABx5QA01i2vcvmE" Name="volatile acidity" Kind="InputPin" />
+            <Pin Id="U2L7AhuCtmzOoP4i1WAJZE" Name="citric acid" Kind="InputPin" />
+            <Pin Id="TEhy9Ckc3lWPAWBjzTatsH" Name="residual sugar" Kind="InputPin" />
+            <Pin Id="ENeURHGnC4nLI4FG6aZ5MN" Name="chlorides" Kind="InputPin" />
+            <Pin Id="P1xP9w6C5trMuYifLRteDV" Name="free sulfur dioxide" Kind="InputPin" />
+            <Pin Id="Us7EOxuVwo4Nn5YsmaUU2Y" Name="total sulfur dioxide" Kind="InputPin" />
+            <Pin Id="KHwcLSyNLs5QBoOC6DxbdD" Name="density" Kind="InputPin" />
+            <Pin Id="HqWna6OPVcLNCxE1vvUTHz" Name="pH" Kind="InputPin" />
+            <Pin Id="GGskwH6mIbJOZxP5cFnOP7" Name="sulphates" Kind="InputPin" />
+            <Pin Id="VLShOHShGxbO8En3HbR7q7" Name="alcohol" Kind="InputPin" />
+            <Pin Id="Unvv5sXN9EPP83ASiC9vQE" Name="quality" Kind="InputPin" />
+            <Pin Id="NkCxH2k8WMqP3qa3tPHXCn" Name="Predict" Kind="InputPin" />
+            <Pin Id="BgmJ0LsSqZ8NZWumauX5GY" Name="Score" Kind="OutputPin" />
+          </Node>
+          <Pad Id="TE7TDh0F7hoOEJWouuIvnH" Comment="Predict" Bounds="653,387,35,35" ShowValueBox="true" isIOBox="true" Value="False">
             <p:TypeAnnotation>
               <Choice Kind="TypeFlag" Name="Boolean" />
               <FullNameCategoryReference ID="Primitive" />
@@ -24,76 +46,62 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="AavrMG5PLZ9PMJiApPhw6v" Comment="VendorId" Bounds="432,253,35,15" ShowValueBox="true" isIOBox="true" Value="VTS">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-          </Pad>
-          <Pad Id="ADWjIDNvMCrPohtkyWhsvb" Comment="RateCode" Bounds="452,278,35,15" ShowValueBox="true" isIOBox="true" Value="1">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-          </Pad>
-          <Pad Id="Iv4H5T3kcExNHuMnbvVRcf" Comment="PassengerCount" Bounds="471,298,50,15" ShowValueBox="true" isIOBox="true" Value="1">
+          <Pad Id="CMwZ0wRZwkHNiPHSYpHoKU" Comment="fixed acidity" Bounds="349,244,35,15" ShowValueBox="true" isIOBox="true" Value="0">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="QN5VWnrla6tQMAHXD2TWTL" Comment="TripTime" Bounds="490,321,56,12" ShowValueBox="true" isIOBox="true" Value="1140">
+          <Pad Id="E14xog5cGYrLhlni4vqlBR" Comment="volatile acidity" Bounds="369,263,35,15" ShowValueBox="true" isIOBox="true" Value="0">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="EfCeBvl9F3YMdDY4KybIaw" Comment="TripDistance" Bounds="510,345,35,15" ShowValueBox="true" isIOBox="true" Value="3.75">
+          <Pad Id="OnjAcVXdvfoNRjoQ9h3roB" Comment="citric acid" Bounds="389,285,35,15" ShowValueBox="true" isIOBox="true" Value="0">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="SCzIdcE0rZ1MQBP25baf0u" Comment="PaymentType" Bounds="529,369,35,15" ShowValueBox="true" isIOBox="true" Value="CRD">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-          </Pad>
-          <Pad Id="TrkivhbJpTCNXYKj3iYT3Y" Comment="FareAmount" Bounds="549,391,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+          <Pad Id="DcsdI3lClHeNSUcogVnGdL" Comment="residual sugar" Bounds="409,311,35,15" ShowValueBox="true" isIOBox="true" Value="0">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="405,489,205,19" Id="V6ex6N8dQ9CNQDPQNNUEb5">
-            <p:NodeReference LastCategoryFullName="ML.Runners" LastSymbolSource="VL.MLNet-Factory">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="Category" Name="ML" />
-              <CategoryReference Kind="Category" Name="Runners" />
-              <Choice Kind="ProcessNode" Name="HouseValue" />
-            </p:NodeReference>
-            <Pin Id="Kx5qgBcQ9ydNic7R1DjEmy" Name="longitude" Kind="InputPin" />
-            <Pin Id="H14vAzP5YTLOTVfw4o4WfB" Name="latitude" Kind="InputPin" />
-            <Pin Id="G3iMTw0jlPxN6ohnydJLqn" Name="housing_median_age" Kind="InputPin" />
-            <Pin Id="RQ85TPTpsWBOrsj50U42gz" Name="total_rooms" Kind="InputPin" />
-            <Pin Id="TbZVMYDeJitMCbJ7d2YapB" Name="total_bedrooms" Kind="InputPin" />
-            <Pin Id="RjS9Nji1mT9PSu20mNB9ap" Name="population" Kind="InputPin" />
-            <Pin Id="OWaM7sUzDFeLREGY87CgNk" Name="households" Kind="InputPin" />
-            <Pin Id="LxmcajV9DG8Maqcw4r3p5f" Name="median_income" Kind="InputPin" />
-            <Pin Id="GZIhvDGdOPcPjxjLwEDP09" Name="median_house_value" Kind="InputPin" />
-            <Pin Id="Ee0gXmkVOGFLTYWIMnkgVq" Name="ocean_proximity" Kind="InputPin" />
-            <Pin Id="N7UqeC8nMNtLBoGshEnSQX" Name="Predict" Kind="InputPin" />
-            <Pin Id="JTCdoRHIRSVLfsktpo5dgR" Name="Score" Kind="OutputPin" />
-          </Node>
-          <Node Bounds="426,441,145,19" Id="CmMve6c0DmoL1ODp5bcdKe">
-            <p:NodeReference LastCategoryFullName="ML.Runners" LastSymbolSource="VL.MLNet-Factory">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessNode" Name="TaxiFare" />
-            </p:NodeReference>
-            <Pin Id="TWDCH0bn0XmL5x3Tjt8cDL" Name="VendorId" Kind="InputPin" />
-            <Pin Id="KJSsIHH2iHqOfFpCmCblwc" Name="RateCode" Kind="InputPin" />
-            <Pin Id="EHfsaXXxJjfOrSTj8vbSgM" Name="PassengerCount" Kind="InputPin" />
-            <Pin Id="FbG1wGpQl9lOY6OzsIkUzF" Name="TripTime" Kind="InputPin" />
-            <Pin Id="MnnMJrD4d3wOvGUzq3Ph55" Name="TripDistance" Kind="InputPin" />
-            <Pin Id="MLuqjjRHMDqOiO61AW65MB" Name="PaymentType" Kind="InputPin" />
-            <Pin Id="A3fyZl9pEtxLuv4v9Dzrxt" Name="FareAmount" Kind="InputPin" />
-            <Pin Id="I4DbSsgBf3EMiEd38MAV6B" Name="Predict" Kind="InputPin" />
-            <Pin Id="QWiAqE4V3rmPT2p50Lw3ku" Name="Score" Kind="OutputPin" />
-          </Node>
+          <Pad Id="KfPLV37rK9gQB1UbAcUwUg" Comment="chlorides" Bounds="431,335,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Tf1nq29SObHMfr1YLwexYz" Comment="free sulfur dioxide" Bounds="450,361,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="RnWJvhfjEylNzrxxWIjuKt" Comment="total sulfur dioxide" Bounds="470,395,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="BSN0N90NTSnQUzcoSdIRKG" Comment="density" Bounds="490,422,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="T95pMBDcr1ROTCYVrzdH9r" Comment="pH" Bounds="510,447,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="Fvm2hrx08EXNJ3BeSLSWgx" Comment="sulphates" Bounds="531,474,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="S5Arb6Kcv5BNi0UBaCvLcX" Comment="alcohol" Bounds="551,494,35,15" ShowValueBox="true" isIOBox="true" Value="0">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="ApC25azZ0QtLN7TavVMISY" Comment="Score" Bounds="351,572,35,15" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -101,17 +109,21 @@
           <Fragment Id="KGItBanaoe8OTtmrFvQOev" Patch="J7amywRwp4FP06LTAjeSOh" Enabled="true" />
           <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="NMDpzB1WRukMYlBkhacEtt" Ids="AavrMG5PLZ9PMJiApPhw6v,TWDCH0bn0XmL5x3Tjt8cDL" />
-        <Link Id="DfmoMhAOfmhP8L02E492qB" Ids="ADWjIDNvMCrPohtkyWhsvb,KJSsIHH2iHqOfFpCmCblwc" />
-        <Link Id="IEQnAdq1JqYOnNbBdkUZv2" Ids="Iv4H5T3kcExNHuMnbvVRcf,EHfsaXXxJjfOrSTj8vbSgM" />
-        <Link Id="O1ASau8wwKVMsR5Fr0ZPj3" Ids="QN5VWnrla6tQMAHXD2TWTL,FbG1wGpQl9lOY6OzsIkUzF" />
-        <Link Id="RLs4cvxfa4SNxVvIZbESYc" Ids="EfCeBvl9F3YMdDY4KybIaw,MnnMJrD4d3wOvGUzq3Ph55" />
-        <Link Id="Du1Ell1DyjrMbk35xArWoF" Ids="SCzIdcE0rZ1MQBP25baf0u,MLuqjjRHMDqOiO61AW65MB" />
-        <Link Id="GrG8vnm3whCNeOMo1sgqrs" Ids="TrkivhbJpTCNXYKj3iYT3Y,A3fyZl9pEtxLuv4v9Dzrxt" />
-        <Link Id="NVeKP8hQchJOhnzo4Ip2HX" Ids="JokZe923hHPOVd7VcLIiq1,I4DbSsgBf3EMiEd38MAV6B" />
+        <Link Id="BtwsiZmxvy1MDmLIafs3PV" Ids="TE7TDh0F7hoOEJWouuIvnH,NkCxH2k8WMqP3qa3tPHXCn" />
+        <Link Id="RPoo5MVx5DbL6NC9GGkjrL" Ids="CMwZ0wRZwkHNiPHSYpHoKU,Je2vpyR6iILQFwMGTAX58h" />
+        <Link Id="RjwSIc5wrZDN5hITffMiaV" Ids="E14xog5cGYrLhlni4vqlBR,Ujtvk3ZABx5QA01i2vcvmE" />
+        <Link Id="PWCNldttSSZMzGiqU82LC7" Ids="OnjAcVXdvfoNRjoQ9h3roB,U2L7AhuCtmzOoP4i1WAJZE" />
+        <Link Id="QlOE6Fcy9VtMmT5JkUrFgc" Ids="DcsdI3lClHeNSUcogVnGdL,TEhy9Ckc3lWPAWBjzTatsH" />
+        <Link Id="RxP82AcFMcxMVEE9UYyMa2" Ids="KfPLV37rK9gQB1UbAcUwUg,ENeURHGnC4nLI4FG6aZ5MN" />
+        <Link Id="KLGzpOlYk6aP17Iu4mVSvq" Ids="Tf1nq29SObHMfr1YLwexYz,P1xP9w6C5trMuYifLRteDV" />
+        <Link Id="J2aeyjecovhPIVg6gdeuRL" Ids="RnWJvhfjEylNzrxxWIjuKt,Us7EOxuVwo4Nn5YsmaUU2Y" />
+        <Link Id="DRXiXR7p5FhPYap7t0zU8G" Ids="BSN0N90NTSnQUzcoSdIRKG,KHwcLSyNLs5QBoOC6DxbdD" />
+        <Link Id="R04InIy7LpoQB7WGuUP0mK" Ids="T95pMBDcr1ROTCYVrzdH9r,HqWna6OPVcLNCxE1vvUTHz" />
+        <Link Id="DIWGv2T6Tv9MQtJiWslVJg" Ids="Fvm2hrx08EXNJ3BeSLSWgx,GGskwH6mIbJOZxP5cFnOP7" />
+        <Link Id="OT4ngrrlzDaOlPMo8xIREz" Ids="S5Arb6Kcv5BNi0UBaCvLcX,VLShOHShGxbO8En3HbR7q7" />
+        <Link Id="GiX8NAbfM6YLuNL7BieE5f" Ids="BgmJ0LsSqZ8NZWumauX5GY,ApC25azZ0QtLN7TavVMISY" />
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="U2gz7hVeoRDMvRXkfnnUUG" Location="VL.Stride" Version="0.8.154-g7440e39f48" />
   <NugetDependency Id="PyDhpUzutKpOFK8qJMpXCt" Location="VL.ML" Version="0.0.0.0" />
 </Document>
