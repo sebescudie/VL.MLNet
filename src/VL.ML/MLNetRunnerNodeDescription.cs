@@ -78,9 +78,9 @@ namespace VL.ML
                     GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
                     outputs.Add(new PinDescription("Predicted Label", type, dflt, descr));
 
-                    //var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
-                    //GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
-                    //outputs.Add(new PinDescription("Score", type, dflt, descr));
+                    var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
+                    GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
+                    outputs.Add(new PinDescription("Score", type, dflt, descr));
                 }
                 else if(FModelType == "Regression")
                 {
@@ -203,11 +203,11 @@ namespace VL.ML
             //    type = typeof(IEnumerable<float>);
             //    dflt = Enumerable.Repeat<float>(0, 0).ToArray();
             //}
-            //else if (pin.Type.ToString() == "Vector<Single, 4>")
-            //{
-            //    type = typeof(IEnumerable<float>);
-            //    dflt = Enumerable.Repeat<float>(0, 0).ToArray();
-            //}
+            else if (pin.Type.ToString() == "Vector<Single, 4>")
+            {
+                type = typeof(IEnumerable<float>);
+                dflt = Enumerable.Repeat<float>(0, 0).ToArray();
+            }
         }
 
         public string Summary => FSummary;
