@@ -204,7 +204,7 @@ namespace VL.ML
                 type = typeof(float);
                 dflt = 0.0f;
             }    
-            else if (pin.Type.ToString() == "Vector<Single, 4>")
+            else if (pin.Type.ToString() == "Vector<Single, 4>" || pin.Type.ToString() == "Vector<Single, 6>")
             {
                 type = typeof(IEnumerable<float>);
                 dflt = Enumerable.Repeat<float>(0, 0).ToArray();
