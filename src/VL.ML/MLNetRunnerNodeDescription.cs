@@ -66,14 +66,20 @@ namespace VL.ML
 
                 if(FModelType == "Classification")
                 {
-                    // Retrieve input column
-                    // Our dataset must have a column named input
-                    var inputColumn = predictionPipeline.FirstOrDefault(i => i.Name == "Input");
-                    GetTypeDefaultAndDescription(inputColumn, ref type, ref dflt, ref descr);
-                    inputs.Add(new PinDescription(inputColumn.Name, type, dflt, descr));
+                    //// Retrieve input column
+                    //// Our dataset must have a column named input
+                    //var inputColumn = predictionPipeline.FirstOrDefault(i => i.Name == "Input");
+                    //GetTypeDefaultAndDescription(inputColumn, ref type, ref dflt, ref descr);
+                    //inputs.Add(new PinDescription(inputColumn.Name, type, dflt, descr));
+
+                    // Retrieve all columns that are not named "Label"
+                    foreach(var inputCol in predictionPipeline.Where(i => i.Name != "Label"))
+                    {
+                        GetTypeDefaultAndDescription(inputCol, ref type, ref dflt, ref descr);
+                        inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
+                    }
 
                     // Retrieve outputs
-                    // For now we just retrieve the PredictedLabel and not the scores, since there seem to be issues using an IEnumerable output
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
                     GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
                     outputs.Add(new PinDescription("Predicted Label", type, dflt, descr));
@@ -197,12 +203,7 @@ namespace VL.ML
             {
                 type = typeof(float);
                 dflt = 0.0f;
-            }
-            //else if (pin.Type == "System.Single[]")
-            //{
-            //    type = typeof(IEnumerable<float>);
-            //    dflt = Enumerable.Repeat<float>(0, 0).ToArray();
-            //}
+            }    
             else if (pin.Type.ToString() == "Vector<Single, 4>")
             {
                 type = typeof(IEnumerable<float>);

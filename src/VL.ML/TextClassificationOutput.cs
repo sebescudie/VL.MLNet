@@ -7,5 +7,6 @@ namespace VL.ML
     {
         [ColumnName("PredictedLabel")]
         public String PredictedLabel { get; set; }
+        public float[] Score { get; set; }
     }
 }

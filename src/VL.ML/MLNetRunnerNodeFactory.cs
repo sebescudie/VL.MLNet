@@ -143,9 +143,9 @@ namespace VL.ML
             // because they won't match what ML.NET expects
             if (description.FModelType == "Classification")
             {
-                // Classification input and output classes are hardcoded
-                // since they don't change no matter the model
-                foreach(var inputColumn in description.PredictionPipeline)
+                // Look at the model and retrieve all inputs that are not Label
+                // Use hardcoded class for output
+                foreach (var inputColumn in description.PredictionPipeline)
                 {
                     GetType(inputColumn, ref type);
 
@@ -261,13 +261,20 @@ namespace VL.ML
                     var inputPin = Inputs.Cast<MyPin>().FirstOrDefault(i => i.Name == "Input");
                     inputType.InvokeMember(inputPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { inputPin.Value });
 
+                    // We know all input pins that are not named "Apply" should be taken into account
+
+
                     // Invoke the predict method
                     var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
                     var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
 
-                    // Look for the "Predicted Label" input pin, and assign it the value of the "PredictedLabel" field of the output type
+                    // Look for the "Predicted Label" output pin, and assign it the value of the "PredictedLabel" field of the output type
                     var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Predicted Label");
                     outputPin.Value = outputType.InvokeMember("PredictedLabel", BindingFlags.GetProperty, null, result, new object[] { });
+
+                    // Look for the "Score" output pin, and assign it the value of the "Score" field of the output type
+                    var scorePin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
+                    scorePin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
                 }
                 else if(description.FModelType == "Regression")
                 {

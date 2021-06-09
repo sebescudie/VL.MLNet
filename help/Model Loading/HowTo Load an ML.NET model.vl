@@ -112,6 +112,7 @@
             <Pin Id="Gj767pNQnLPPJhZlleIc7d" Name="Input" Kind="InputPin" />
             <Pin Id="H9JoH4nJkTwOIeMyYonTJr" Name="Predict" Kind="InputPin" />
             <Pin Id="LJ9RffP8L4VO8WZNVn9QSt" Name="Predicted Label" Kind="OutputPin" />
+            <Pin Id="Pg4YYXuFFuzP1bHqtQLQAG" Name="Score" Kind="OutputPin" />
           </Node>
           <Pad Id="G920jxWs8XlMNdlcNwQ4o6" Comment="" Bounds="685,478,125,-9" ShowValueBox="true" isIOBox="true" Value="Life is wonderful">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
@@ -128,6 +129,7 @@
             </p:ValueBoxSettings>
           </Pad>
           <Pad Id="JmI4MzRMjOJLXRnTZxzK9Y" Comment="Predicted Label" Bounds="686,625,81,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="SINrTkFPSzUOEI3ZS5fs3x" Comment="Score" Bounds="761,699,35,17" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -151,6 +153,7 @@
         <Link Id="CPM7UcNbZHzLsqxZ773JDN" Ids="G920jxWs8XlMNdlcNwQ4o6,Gj767pNQnLPPJhZlleIc7d" />
         <Link Id="UdknoLbRq3EPpOdnLB66Se" Ids="Vu9Aa0AbonMN8AVCuSG9x2,H9JoH4nJkTwOIeMyYonTJr" />
         <Link Id="Ac6i2wctuXiNMubYRuNPUh" Ids="LJ9RffP8L4VO8WZNVn9QSt,JmI4MzRMjOJLXRnTZxzK9Y" />
+        <Link Id="VGJz42vyLlIO3ihtrqU6cH" Ids="Pg4YYXuFFuzP1bHqtQLQAG,SINrTkFPSzUOEI3ZS5fs3x" />
       </Patch>
     </Node>
   </Patch>
