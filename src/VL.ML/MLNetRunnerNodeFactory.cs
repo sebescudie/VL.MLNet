@@ -7,6 +7,7 @@ using VL.Core;
 using Microsoft.ML;
 using System.Linq;
 using System.Reflection;
+using Microsoft.ML.Data;
 
 namespace VL.ML
 {
@@ -273,6 +274,12 @@ namespace VL.ML
                     // Look for the "Score" output pin, and assign it the value of the "Score" field of the output type
                     var scorePin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
                     scorePin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
+
+                    // Do some voodoo to retrieve the score labels from the pipeline
+                    // Credits goes to https://blog.hompus.nl/2020/09/14/get-all-prediction-scores-from-your-ml-net-model/
+                    var labelBuffer = new VBuffer<ReadOnlyMemory<Char>>();
+                    predictionEngine.OutputSchema["Score"].Annotations.GetValue("SlotNames", ref labelBuffer);
+                    var labels = labelBuffer.DenseValues().Select(l => l.ToString()).ToArray();
                 }
                 else if(description.FModelType == "Regression")
                 {
