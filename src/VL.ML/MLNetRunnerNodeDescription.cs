@@ -71,7 +71,7 @@ namespace VL.ML
                     inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
                 }
 
-                if (FModelType == "Classification" || FModelType == "ImageClassification")
+                if (FModelType == Enums.ModelType.TextClassification.ToString() || FModelType == Enums.ModelType.ImageClassification.ToString())
                 {
                     // Retrieve outputs
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
@@ -91,11 +91,6 @@ namespace VL.ML
                     var scoreColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
                     GetTypeDefaultAndDescription(scoreColumn, ref type, ref dflt, ref descr);
                     outputs.Add(new PinDescription(scoreColumn.Name, type, dflt, descr));
-                }
-                else if(FModelType == "ImageClassification")
-                {
-                    // Keeping for clarity
-                    // see Classification
                 }
                 else
                 {

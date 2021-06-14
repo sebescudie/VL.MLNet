@@ -155,15 +155,15 @@ namespace VL.ML
             inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
 
             // Set the output type based on the model category
-            if (description.FModelType == "Classification")
+            if (description.FModelType == Enums.ModelType.TextClassification.ToString())
             {
                 outputType = typeof(TextClassificationOutput);
             }
-            else if(description.FModelType == "Regression")
+            else if(description.FModelType == Enums.ModelType.Regression.ToString())
             {
                 outputType = typeof(RegressionOutput);
             }
-            else if(description.FModelType == "ImageClassification")
+            else if(description.FModelType == Enums.ModelType.ImageClassification.ToString())
             {
                 outputType = typeof(ImageClassificationOutput);
             }
@@ -216,7 +216,7 @@ namespace VL.ML
                 // Create an input object that will hold our pin's data
                 var inputObject = Activator.CreateInstance(inputType);
 
-                if(description.FModelType == "Classification" || description.FModelType == "ImageClassification")
+                if(description.FModelType == Enums.ModelType.TextClassification.ToString() || description.FModelType == Enums.ModelType.ImageClassification.ToString())
                 {
                     // We know all input pins that are not named "Predict" should be taken into account
                     foreach(var dataPin in Inputs.Cast<MyPin>().Where(i => i.Name != "Run"))
@@ -243,7 +243,7 @@ namespace VL.ML
                     var labelsPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Labels");
                     labelsPin.Value = labelBuffer.DenseValues().Select(l => l.ToString()).ToArray();
                 }
-                else if(description.FModelType == "Regression")
+                else if(description.FModelType == Enums.ModelType.Regression.ToString())
                 {
                     // We're looking at a regression, for now we just have a one to one mapping
                     // We'll need to find a way to get rid if the Label input later
@@ -259,11 +259,6 @@ namespace VL.ML
                     // Look for the "Score" output pin and assign it the value return by the prediction
                     var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
                     outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
-                }
-                else if(description.FModelType == "ImageClassification")
-                {
-                    // Keeping this for clarity
-                    // see code for "Classification" above
                 }
                 else
                 {
