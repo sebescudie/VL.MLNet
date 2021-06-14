@@ -279,7 +279,8 @@ namespace VL.ML
                     // Credits goes to https://blog.hompus.nl/2020/09/14/get-all-prediction-scores-from-your-ml-net-model/
                     var labelBuffer = new VBuffer<ReadOnlyMemory<Char>>();
                     predictionEngine.OutputSchema["Score"].Annotations.GetValue("SlotNames", ref labelBuffer);
-                    var labels = labelBuffer.DenseValues().Select(l => l.ToString()).ToArray();
+                    var labelsPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Labels");
+                    labelsPin.Value = labelBuffer.DenseValues().Select(l => l.ToString()).ToArray();
                 }
                 else if(description.FModelType == "Regression")
                 {
