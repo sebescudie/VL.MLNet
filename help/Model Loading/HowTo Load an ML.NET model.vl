@@ -33,7 +33,7 @@
             <Pin Id="HqWna6OPVcLNCxE1vvUTHz" Name="pH" Kind="InputPin" />
             <Pin Id="GGskwH6mIbJOZxP5cFnOP7" Name="sulphates" Kind="InputPin" />
             <Pin Id="VLShOHShGxbO8En3HbR7q7" Name="alcohol" Kind="InputPin" />
-            <Pin Id="NkCxH2k8WMqP3qa3tPHXCn" Name="Predict" Kind="InputPin" />
+            <Pin Id="F3vw1DJPfcLNEwZz3jyf27" Name="Run" Kind="InputPin" />
             <Pin Id="BgmJ0LsSqZ8NZWumauX5GY" Name="Score" Kind="OutputPin" />
           </Node>
           <Pad Id="TE7TDh0F7hoOEJWouuIvnH" Comment="Predict" Bounds="653,387,35,35" ShowValueBox="true" isIOBox="true" Value="False">
@@ -109,7 +109,7 @@
               <Choice Kind="ProcessNode" Name="OffensiveOrNot" />
             </p:NodeReference>
             <Pin Id="Gj767pNQnLPPJhZlleIc7d" Name="Input" Kind="InputPin" />
-            <Pin Id="H9JoH4nJkTwOIeMyYonTJr" Name="Predict" Kind="InputPin" />
+            <Pin Id="KXsa0cBGj3FOnKTCu1S9NF" Name="Run" Kind="InputPin" />
             <Pin Id="LJ9RffP8L4VO8WZNVn9QSt" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="Pg4YYXuFFuzP1bHqtQLQAG" Name="Score" Kind="OutputPin" />
             <Pin Id="MV9sFOciQ5RPQwlJXD2rdP" Name="Labels" Kind="OutputPin" />
@@ -137,10 +137,11 @@
             </p:NodeReference>
             <Pin Id="TlNyj0XNHxHLPymSaYvJtS" Name="title" Kind="InputPin" />
             <Pin Id="QQG9r6xX2lnNAPCIbLDZwz" Name="text" Kind="InputPin" />
-            <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
+            <Pin Id="PBCVxOc27JlLx4AqQ7kAJI" Name="Run" Kind="InputPin" />
             <Pin Id="IJZuCHTGGvxLwnGGrsZxQ6" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="HjJvjeJwOzqOXtiMJyzMH4" Name="Score" Kind="OutputPin" />
             <Pin Id="TAxtJIlSgFMLZr1ROjc057" Name="Labels" Kind="OutputPin" />
+            <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
           </Node>
           <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="995,1098,47,92" ShowValueBox="true" isIOBox="true" />
           <Pad Id="UB0QXVvXCH0LoYJgOW7Rb1" Comment="Predicted Label" Bounds="970,1203,127,15" ShowValueBox="true" isIOBox="true" />
@@ -170,7 +171,7 @@
             </p:NodeReference>
             <Pin Id="MgYBvCNHyQDLVt0rCLNLu6" Name="title" Kind="InputPin" />
             <Pin Id="Uja4MhErpLqNigMLO5Yq8S" Name="text" Kind="InputPin" />
-            <Pin Id="Od2jJxQDOnXPIl3xRLMylm" Name="Predict" Kind="InputPin" />
+            <Pin Id="Jy35pO4ZNFqO9K0CuF9Vke" Name="Run" Kind="InputPin" />
             <Pin Id="IORt48b7eQROseImpASS1t" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="FNcIl5HhTWgOFJdCZxruAy" Name="Score" Kind="OutputPin" />
             <Pin Id="DPxsT5Ut99SPFxVXV3SEil" Name="Labels" Kind="OutputPin" />
@@ -183,9 +184,10 @@
               <Choice Kind="ProcessNode" Name="CatDogOtter" />
             </p:NodeReference>
             <Pin Id="UHw8OGd8adjOzNTFKCG7oZ" Name="ImageSource" Kind="InputPin" />
-            <Pin Id="U4TEcbUrK0DO4fnLVNiLb5" Name="Predict" Kind="InputPin" />
+            <Pin Id="CbaiYGxtUdIMUZGBWUlqTB" Name="Run" Kind="InputPin" />
             <Pin Id="MD5E1k0kngFNXCpyKPX0mG" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="FqHE9GlAt0vMErevRhlwgm" Name="Score" Kind="OutputPin" />
+            <Pin Id="Vt3uhLTF6KLQGB8BtWqV8j" Name="Labels" Kind="OutputPin" />
           </Node>
           <Pad Id="U0GVt2ckmxzPASVGbpDGaw" Bounds="460,640,35,15" ShowValueBox="true" isIOBox="true" Value="C:\Users\seb\Downloads\images\dog\03.jpg">
             <p:TypeAnnotation LastCategoryFullName="IO" LastSymbolSource="CoreLibBasics.vl">
@@ -200,7 +202,7 @@
             <Pin Id="UZGqVkGoWAOLtrxYPrOiNN" Name="Input" Kind="InputPin" />
             <Pin Id="P4M7sz40pnqP7G5NNoxCQ6" Name="Result" Kind="OutputPin" />
           </Node>
-          <Pad Id="TqNO7riwecAOrhUQvyfLVt" Comment="Predicted Label" Bounds="461,822,63,28" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="TqNO7riwecAOrhUQvyfLVt" Comment="Predicted Label" Bounds="456,858,63,28" ShowValueBox="true" isIOBox="true" />
           <Pad Id="PB0FS24tTG2MqGKJ8nKrFq" Comment="Predict" Bounds="528,656,35,35" ShowValueBox="true" isIOBox="true" Value="False">
             <p:TypeAnnotation>
               <Choice Kind="TypeFlag" Name="Boolean" />
@@ -216,39 +218,16 @@
               <Choice Kind="ProcessAppFlag" Name="ImageReader" />
             </p:NodeReference>
             <Pin Id="CAKR5NBNUyVObHRktu6VRk" Name="Filename" Kind="InputPin" />
-            <Pin Id="Tsgq1cmZ8pVOubuh2Wqhjr" Name="Load" Kind="InputPin" />
+            <Pin Id="Tsgq1cmZ8pVOubuh2Wqhjr" Name="Load" Kind="InputPin" DefaultValue="False">
+              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="Boolean" />
+              </p:TypeAnnotation>
+            </Pin>
             <Pin Id="T7YA9hdidk3MiSAGTosZW8" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="PBGMxBcaz3bOK2tX70FFYN" Comment="" Bounds="269,735,156,142" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="Hs7KVF1Sb3lOqAORBqXnRU" Bounds="533,718,133,87" ShowValueBox="true" isIOBox="true" Value="&lt;&lt; a model that was trained to recognize either cats, dogs or otters.">
-            <p:TypeAnnotation>
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-            <p:ValueBoxSettings>
-              <p:fontsize p:Type="Int32">9</p:fontsize>
-              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
-            </p:ValueBoxSettings>
-          </Pad>
-          <Node Bounds="667,816" Id="NhfgSqoRW0bMAvVQ3egmK8">
-            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessNode" Name="CatDogOtter" />
-            </p:NodeReference>
-            <Pin Id="FC4eLDzVCy8PIugcAMZBYP" Name="ImageSource" Kind="InputPin" />
-            <Pin Id="MxT8osyLbOoMAdZfl0C6j6" Name="Predict" Kind="InputPin" />
-            <Pin Id="JviAJ4g4SrRLdMS3ZgSmyG" Name="Predicted Label" Kind="OutputPin" />
-            <Pin Id="FXQj8CAe6trPU4lic57md3" Name="Score" Kind="OutputPin" />
-          </Node>
-          <Pad Id="IvFqb3nB16aONVmRRCPNiO" Comment="Predicted Label" Bounds="667,858,35,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="AFwNrlRZtwKOPmF9HlBdav" Comment="Predict" Bounds="734,778,35,35" ShowValueBox="true" isIOBox="true" Value="False">
-            <p:TypeAnnotation>
-              <Choice Kind="TypeFlag" Name="Boolean" />
-              <FullNameCategoryReference ID="Primitive" />
-            </p:TypeAnnotation>
-            <p:ValueBoxSettings>
-              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
-            </p:ValueBoxSettings>
-          </Pad>
+          <Pad Id="KwYbHGC3StrMSUeze4vyO7" Comment="Score" Bounds="629,855,35,65" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="II27XzMk8HqNeC2TinMHP8" Comment="Labels" Bounds="722,852,35,65" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Bol0rJNV88KMulvs9Lmprf" Comment="" Bounds="201,758,230,127" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -256,7 +235,6 @@
           <Fragment Id="KGItBanaoe8OTtmrFvQOev" Patch="J7amywRwp4FP06LTAjeSOh" Enabled="true" />
           <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="BtwsiZmxvy1MDmLIafs3PV" Ids="TE7TDh0F7hoOEJWouuIvnH,NkCxH2k8WMqP3qa3tPHXCn" />
         <Link Id="RPoo5MVx5DbL6NC9GGkjrL" Ids="CMwZ0wRZwkHNiPHSYpHoKU,Je2vpyR6iILQFwMGTAX58h" />
         <Link Id="RjwSIc5wrZDN5hITffMiaV" Ids="E14xog5cGYrLhlni4vqlBR,Ujtvk3ZABx5QA01i2vcvmE" />
         <Link Id="PWCNldttSSZMzGiqU82LC7" Ids="OnjAcVXdvfoNRjoQ9h3roB,U2L7AhuCtmzOoP4i1WAJZE" />
@@ -270,7 +248,6 @@
         <Link Id="OT4ngrrlzDaOlPMo8xIREz" Ids="S5Arb6Kcv5BNi0UBaCvLcX,VLShOHShGxbO8En3HbR7q7" />
         <Link Id="GiX8NAbfM6YLuNL7BieE5f" Ids="BgmJ0LsSqZ8NZWumauX5GY,ApC25azZ0QtLN7TavVMISY" />
         <Link Id="CPM7UcNbZHzLsqxZ773JDN" Ids="G920jxWs8XlMNdlcNwQ4o6,Gj767pNQnLPPJhZlleIc7d" />
-        <Link Id="UdknoLbRq3EPpOdnLB66Se" Ids="Vu9Aa0AbonMN8AVCuSG9x2,H9JoH4nJkTwOIeMyYonTJr" />
         <Link Id="Ac6i2wctuXiNMubYRuNPUh" Ids="LJ9RffP8L4VO8WZNVn9QSt,JmI4MzRMjOJLXRnTZxzK9Y" />
         <Link Id="VGJz42vyLlIO3ihtrqU6cH" Ids="Pg4YYXuFFuzP1bHqtQLQAG,SINrTkFPSzUOEI3ZS5fs3x" />
         <Link Id="HPif4TdTVnnNhEp39RUhMR" Ids="HjJvjeJwOzqOXtiMJyzMH4,SHboIlaOkdpNn50dZCsh4S" />
@@ -283,12 +260,13 @@
         <Link Id="GvkFvmsbRjdLWEHRtZy15g" Ids="U0GVt2ckmxzPASVGbpDGaw,UZGqVkGoWAOLtrxYPrOiNN" />
         <Link Id="DYdLetGZYpAPphpghzxAF3" Ids="P4M7sz40pnqP7G5NNoxCQ6,UHw8OGd8adjOzNTFKCG7oZ" />
         <Link Id="SugJVBV4bC3LRwfkRYrxXb" Ids="MD5E1k0kngFNXCpyKPX0mG,TqNO7riwecAOrhUQvyfLVt" />
-        <Link Id="QpDpOqT2ZfmM03GqhSO0aQ" Ids="PB0FS24tTG2MqGKJ8nKrFq,U4TEcbUrK0DO4fnLVNiLb5" />
         <Link Id="OJXJn3aujuMM84lM9FNxC8" Ids="U0GVt2ckmxzPASVGbpDGaw,CAKR5NBNUyVObHRktu6VRk" />
-        <Link Id="EWDcHRPEphzNNftNVRgSyS" Ids="T7YA9hdidk3MiSAGTosZW8,PBGMxBcaz3bOK2tX70FFYN" />
-        <Link Id="CvnQTnzrVqLLbKzLSpyNWF" Ids="P4M7sz40pnqP7G5NNoxCQ6,FC4eLDzVCy8PIugcAMZBYP" />
-        <Link Id="NWlb4dazfHwL1NsFjc64NI" Ids="JviAJ4g4SrRLdMS3ZgSmyG,IvFqb3nB16aONVmRRCPNiO" />
-        <Link Id="S7HbMu9Zu89NTD6OpUkHTX" Ids="AFwNrlRZtwKOPmF9HlBdav,MxT8osyLbOoMAdZfl0C6j6" />
+        <Link Id="PhxTPxleBf9LQO3l46oAEy" Ids="TE7TDh0F7hoOEJWouuIvnH,F3vw1DJPfcLNEwZz3jyf27" />
+        <Link Id="OaojvHrdjGmPKXGd750DAP" Ids="Vu9Aa0AbonMN8AVCuSG9x2,KXsa0cBGj3FOnKTCu1S9NF" />
+        <Link Id="BGWWcmmE1lEMy5J9JrMli9" Ids="PB0FS24tTG2MqGKJ8nKrFq,CbaiYGxtUdIMUZGBWUlqTB" />
+        <Link Id="NDFvjwER0ziMAC7RLR41Si" Ids="FqHE9GlAt0vMErevRhlwgm,KwYbHGC3StrMSUeze4vyO7" />
+        <Link Id="HHILYNOMI01OCNMb0gp12v" Ids="Vt3uhLTF6KLQGB8BtWqV8j,II27XzMk8HqNeC2TinMHP8" />
+        <Link Id="GI8rFzf7yc7Ns9YxNkLCLq" Ids="T7YA9hdidk3MiSAGTosZW8,Bol0rJNV88KMulvs9Lmprf" />
       </Patch>
     </Node>
   </Patch>
