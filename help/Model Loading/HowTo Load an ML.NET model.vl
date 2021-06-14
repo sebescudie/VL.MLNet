@@ -15,12 +15,12 @@
       </p:NodeReference>
       <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
         <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
-          <Node Bounds="349,521,245,19" Id="N45ug9pz459LGk43loG3FC">
+          <Node Bounds="349,521,104,19" Id="N45ug9pz459LGk43loG3FC">
             <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="ML" />
               <CategoryReference Kind="Category" Name="MLNet" />
-              <Choice Kind="ProcessNode" Name="WineQuality" />
+              <Choice Kind="ProcessNode" Name="RedWineQuality" />
             </p:NodeReference>
             <Pin Id="Je2vpyR6iILQFwMGTAX58h" Name="fixed acidity" Kind="InputPin" />
             <Pin Id="Ujtvk3ZABx5QA01i2vcvmE" Name="volatile acidity" Kind="InputPin" />
@@ -33,7 +33,6 @@
             <Pin Id="HqWna6OPVcLNCxE1vvUTHz" Name="pH" Kind="InputPin" />
             <Pin Id="GGskwH6mIbJOZxP5cFnOP7" Name="sulphates" Kind="InputPin" />
             <Pin Id="VLShOHShGxbO8En3HbR7q7" Name="alcohol" Kind="InputPin" />
-            <Pin Id="Unvv5sXN9EPP83ASiC9vQE" Name="quality" Kind="InputPin" />
             <Pin Id="NkCxH2k8WMqP3qa3tPHXCn" Name="Predict" Kind="InputPin" />
             <Pin Id="BgmJ0LsSqZ8NZWumauX5GY" Name="Score" Kind="OutputPin" />
           </Node>
