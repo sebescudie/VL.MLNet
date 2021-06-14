@@ -16,6 +16,10 @@
     <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.5.0" />
     <PackageReference Include="VL.Core" Version="2021.3.2" />
     <PackageReference Include="VL.Lang" Version="2021.3.2" />
-  </ItemGroup>
-
+    <Content Include="..\..\lib-native\CpuMathNative.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+      <Link>%(Filename)%(Extension)</Link>
+    </Content>
+   </ItemGroup>
 </Project>

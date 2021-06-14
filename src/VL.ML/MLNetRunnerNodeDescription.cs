@@ -87,6 +87,9 @@ namespace VL.ML
                     var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
                     GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
                     outputs.Add(new PinDescription("Score", type, dflt, descr));
+
+                    // Add an extra output for labels
+                    outputs.Add(new PinDescription("Labels", typeof(IEnumerable<string>), new string[0], "Score labels"));
                 }
                 else if(FModelType == "Regression")
                 {
