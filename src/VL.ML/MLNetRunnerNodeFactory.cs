@@ -158,18 +158,6 @@ namespace VL.ML
                     }) ;
                 }
 
-                foreach (var outputColumn in description.TrainedModel.GetOutputSchema(description.PredictionPipeline))
-                {
-                    GetType(outputColumn, ref type);
-
-                    outputTypeProperties.Add(new DynamicProperty
-                    {
-                        PropertyName = outputColumn.Name,
-                        DisplayName = outputColumn.Name,
-                        SystemTypeName = type.ToString()
-                    });
-                }
-
                 inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
                 outputType = typeof(TextClassificationOutput);
             }
@@ -187,19 +175,8 @@ namespace VL.ML
                     }) ;
                 }
 
-                var scoreColumn = description.TrainedModel.GetOutputSchema(description.PredictionPipeline).FirstOrDefault(o => o.Name == "Score");
-                
-                GetType(scoreColumn, ref type);
-                
-                outputTypeProperties.Add(new DynamicProperty
-                {
-                    PropertyName = scoreColumn.Name,
-                    DisplayName = scoreColumn.Name,
-                    SystemTypeName = type.ToString()
-                });
-
                 inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
-                outputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), outputTypeProperties);
+                outputType = typeof(RegressionOutput);
 
             }
             else if(description.FModelType == "ImageClassification")
