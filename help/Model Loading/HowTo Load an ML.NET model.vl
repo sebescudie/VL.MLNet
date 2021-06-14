@@ -15,12 +15,12 @@
       </p:NodeReference>
       <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
         <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
-          <Node Bounds="349,521,245,19" Id="N45ug9pz459LGk43loG3FC">
+          <Node Bounds="349,521,104,19" Id="N45ug9pz459LGk43loG3FC">
             <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="ML" />
               <CategoryReference Kind="Category" Name="MLNet" />
-              <Choice Kind="ProcessNode" Name="WineQuality" />
+              <Choice Kind="ProcessNode" Name="RedWineQuality" />
             </p:NodeReference>
             <Pin Id="Je2vpyR6iILQFwMGTAX58h" Name="fixed acidity" Kind="InputPin" />
             <Pin Id="Ujtvk3ZABx5QA01i2vcvmE" Name="volatile acidity" Kind="InputPin" />
@@ -33,7 +33,6 @@
             <Pin Id="HqWna6OPVcLNCxE1vvUTHz" Name="pH" Kind="InputPin" />
             <Pin Id="GGskwH6mIbJOZxP5cFnOP7" Name="sulphates" Kind="InputPin" />
             <Pin Id="VLShOHShGxbO8En3HbR7q7" Name="alcohol" Kind="InputPin" />
-            <Pin Id="Unvv5sXN9EPP83ASiC9vQE" Name="quality" Kind="InputPin" />
             <Pin Id="NkCxH2k8WMqP3qa3tPHXCn" Name="Predict" Kind="InputPin" />
             <Pin Id="BgmJ0LsSqZ8NZWumauX5GY" Name="Score" Kind="OutputPin" />
           </Node>
@@ -113,6 +112,7 @@
             <Pin Id="H9JoH4nJkTwOIeMyYonTJr" Name="Predict" Kind="InputPin" />
             <Pin Id="LJ9RffP8L4VO8WZNVn9QSt" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="Pg4YYXuFFuzP1bHqtQLQAG" Name="Score" Kind="OutputPin" />
+            <Pin Id="MV9sFOciQ5RPQwlJXD2rdP" Name="Labels" Kind="OutputPin" />
           </Node>
           <Pad Id="G920jxWs8XlMNdlcNwQ4o6" Comment="" Bounds="685,478,125,-9" ShowValueBox="true" isIOBox="true" Value="Life is wonderful">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
@@ -140,8 +140,9 @@
             <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
             <Pin Id="IJZuCHTGGvxLwnGGrsZxQ6" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="HjJvjeJwOzqOXtiMJyzMH4" Name="Score" Kind="OutputPin" />
+            <Pin Id="TAxtJIlSgFMLZr1ROjc057" Name="Labels" Kind="OutputPin" />
           </Node>
-          <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="531,1149,106,95" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="500,1150,47,92" ShowValueBox="true" isIOBox="true" />
           <Pad Id="UB0QXVvXCH0LoYJgOW7Rb1" Comment="Predicted Label" Bounds="475,1255,127,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="HnJZOahTuWCNzrDBwwtWTR" Comment="title" Bounds="475,884,305,8" ShowValueBox="true" isIOBox="true" Value="White House drops Trump orders trying to ban TikTok, WeChat">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
@@ -172,7 +173,10 @@
             <Pin Id="Od2jJxQDOnXPIl3xRLMylm" Name="Predict" Kind="InputPin" />
             <Pin Id="IORt48b7eQROseImpASS1t" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="FNcIl5HhTWgOFJdCZxruAy" Name="Score" Kind="OutputPin" />
+            <Pin Id="DPxsT5Ut99SPFxVXV3SEil" Name="Labels" Kind="OutputPin" />
           </Node>
+          <Pad Id="PQU8QFY0uRqOJIAEPCkSeo" Comment="Labels" Bounds="938,678,73,80" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="JLJOoiwfQFPQUC0o82eDhx" Comment="Labels" Bounds="575,1155,54,95" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -202,6 +206,8 @@
         <Link Id="CW5c6EmdHTdLsDi6qASZAB" Ids="HnJZOahTuWCNzrDBwwtWTR,TlNyj0XNHxHLPymSaYvJtS" />
         <Link Id="IvTMRYeBI14OhRPjkXcWU8" Ids="BO9fKgFZQatQc66VhaFzG8,QQG9r6xX2lnNAPCIbLDZwz" />
         <Link Id="FXHqn92zd5lPEVARrT0MQc" Ids="Gu2g344eMTwP0m6iP98J6P,NTHS0R3140iMkG6XNsaCRW" />
+        <Link Id="HdMJpTteqBeNIExA1iZ5dn" Ids="MV9sFOciQ5RPQwlJXD2rdP,PQU8QFY0uRqOJIAEPCkSeo" />
+        <Link Id="HkR5o2e7ns2NcYXRCR1kA1" Ids="TAxtJIlSgFMLZr1ROjc057,JLJOoiwfQFPQUC0o82eDhx" />
       </Patch>
     </Node>
   </Patch>
