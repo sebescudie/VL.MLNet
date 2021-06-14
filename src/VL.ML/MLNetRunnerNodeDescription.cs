@@ -71,7 +71,7 @@ namespace VL.ML
                     inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
                 }
 
-                if (FModelType == "Classification")
+                if (FModelType == "Classification" || FModelType == "ImageClassification")
                 {
                     // Retrieve outputs
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
@@ -94,23 +94,16 @@ namespace VL.ML
                 }
                 else if(FModelType == "ImageClassification")
                 {
-                    // Retrieve outputs
-                    var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
-                    GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
-                    outputs.Add(new PinDescription("Predicted Label", type, dflt, descr));
-
-                    var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
-                    GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
-                    outputs.Add(new PinDescription("Score", type, dflt, descr));
+                    // Keeping for clarity
+                    // see Classification
                 }
                 else
                 {
                     // Unknown model type
                 }
 
-                
                 // Add the Trigger input that will allow to trigger the node
-                inputs.Add(new PinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
+                inputs.Add(new PinDescription("Run", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
                 #endregion Create inputs and outputs
 
                 FSummary = String.Format("Runs the ML.NET {0} {1} pre-trained model",FFriendlyName, FModelType);
@@ -125,8 +118,6 @@ namespace VL.ML
         }
 
         public IVLNodeDescriptionFactory Factory { get; }
-
-
 
         public string Name { get; }
         public string Category => "ML.MLNet";
