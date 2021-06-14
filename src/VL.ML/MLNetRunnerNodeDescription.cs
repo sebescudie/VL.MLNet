@@ -64,21 +64,15 @@ namespace VL.ML
                 object dflt = "";
                 string descr = "";
 
-                if(FModelType == "Classification")
+                // Retrieve all columns that are not named "Label"
+                foreach (var inputCol in predictionPipeline.Where(i => i.Name != "Label"))
                 {
-                    //// Retrieve input column
-                    //// Our dataset must have a column named input
-                    //var inputColumn = predictionPipeline.FirstOrDefault(i => i.Name == "Input");
-                    //GetTypeDefaultAndDescription(inputColumn, ref type, ref dflt, ref descr);
-                    //inputs.Add(new PinDescription(inputColumn.Name, type, dflt, descr));
+                    GetTypeDefaultAndDescription(inputCol, ref type, ref dflt, ref descr);
+                    inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
+                }
 
-                    // Retrieve all columns that are not named "Label"
-                    foreach(var inputCol in predictionPipeline.Where(i => i.Name != "Label"))
-                    {
-                        GetTypeDefaultAndDescription(inputCol, ref type, ref dflt, ref descr);
-                        inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
-                    }
-
+                if (FModelType == "Classification")
+                {
                     // Retrieve outputs
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
                     GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
@@ -93,14 +87,6 @@ namespace VL.ML
                 }
                 else if(FModelType == "Regression")
                 {
-                    // Retrieve all inputs
-                    // Need to find a way to discard the Label from the inputs
-                    foreach (var input in predictionPipeline)
-                    {
-                        GetTypeDefaultAndDescription(input, ref type, ref dflt, ref descr);
-                        inputs.Add(new PinDescription(input.Name, type, dflt, descr));
-                    }
-
                     // Retrieve outputs
                     var scoreColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
                     GetTypeDefaultAndDescription(scoreColumn, ref type, ref dflt, ref descr);
