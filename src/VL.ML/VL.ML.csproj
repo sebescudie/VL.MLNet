@@ -19,12 +19,12 @@
     
     <Content Include="$(PkgMicrosoft_ML_CpuMath)\runtimes\win-x64\nativeassets\netstandard2.0\CpuMathNative.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <Link>%(Filename)%(Extension)</Link>
     </Content>
     <Content Include="$(PkgScisharp_TensorFlow_Redist)\runtimes\win-x64\native\tensorflow.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <Link>%(Filename)%(Extension)</Link>
     </Content>
    
