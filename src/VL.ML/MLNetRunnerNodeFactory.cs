@@ -139,45 +139,29 @@ namespace VL.ML
 
             Type type = typeof(object);
 
-            // Look at the pre-trained model and generate a type from it
-            // Do not generate it based on the input pins
-            // because they won't match what ML.NET expects
+            // Start by loading all inputs from the model and spawn a dynamic type with it
+            foreach (var inputColumn in description.PredictionPipeline)
+            {
+                GetType(inputColumn, ref type);
+
+                inputTypeProperties.Add(new DynamicProperty
+                {
+                    PropertyName = inputColumn.Name,
+                    DisplayName = inputColumn.Name,
+                    SystemTypeName = type.ToString()
+                });
+            }
+
+            inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+
+            // Set the output type based on the model category
             if (description.FModelType == "Classification")
             {
-                // Look at the model and retrieve all inputs that are not Label
-                // Use hardcoded class for output
-                foreach (var inputColumn in description.PredictionPipeline)
-                {
-                    GetType(inputColumn, ref type);
-
-                    inputTypeProperties.Add(new DynamicProperty
-                    {
-                        PropertyName = inputColumn.Name,
-                        DisplayName = inputColumn.Name,
-                        SystemTypeName = type.ToString()
-                    }) ;
-                }
-
-                inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
                 outputType = typeof(TextClassificationOutput);
             }
             else if(description.FModelType == "Regression")
             {
-                foreach (var inputColumn in description.PredictionPipeline)
-                {
-                    GetType(inputColumn, ref type);
-
-                    inputTypeProperties.Add(new DynamicProperty
-                    {
-                        PropertyName = inputColumn.Name,
-                        DisplayName = inputColumn.Name,
-                        SystemTypeName = type.ToString()
-                    }) ;
-                }
-
-                inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
                 outputType = typeof(RegressionOutput);
-
             }
             else if(description.FModelType == "ImageClassification")
             {
