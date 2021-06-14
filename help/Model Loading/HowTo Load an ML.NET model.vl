@@ -33,7 +33,7 @@
             <Pin Id="HqWna6OPVcLNCxE1vvUTHz" Name="pH" Kind="InputPin" />
             <Pin Id="GGskwH6mIbJOZxP5cFnOP7" Name="sulphates" Kind="InputPin" />
             <Pin Id="VLShOHShGxbO8En3HbR7q7" Name="alcohol" Kind="InputPin" />
-            <Pin Id="NkCxH2k8WMqP3qa3tPHXCn" Name="Predict" Kind="InputPin" />
+            <Pin Id="F3vw1DJPfcLNEwZz3jyf27" Name="Run" Kind="InputPin" />
             <Pin Id="BgmJ0LsSqZ8NZWumauX5GY" Name="Score" Kind="OutputPin" />
           </Node>
           <Pad Id="TE7TDh0F7hoOEJWouuIvnH" Comment="Predict" Bounds="653,387,35,35" ShowValueBox="true" isIOBox="true" Value="False">
@@ -109,7 +109,7 @@
               <Choice Kind="ProcessNode" Name="OffensiveOrNot" />
             </p:NodeReference>
             <Pin Id="Gj767pNQnLPPJhZlleIc7d" Name="Input" Kind="InputPin" />
-            <Pin Id="H9JoH4nJkTwOIeMyYonTJr" Name="Predict" Kind="InputPin" />
+            <Pin Id="KXsa0cBGj3FOnKTCu1S9NF" Name="Run" Kind="InputPin" />
             <Pin Id="LJ9RffP8L4VO8WZNVn9QSt" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="Pg4YYXuFFuzP1bHqtQLQAG" Name="Score" Kind="OutputPin" />
             <Pin Id="MV9sFOciQ5RPQwlJXD2rdP" Name="Labels" Kind="OutputPin" />
@@ -130,31 +130,32 @@
           </Pad>
           <Pad Id="JmI4MzRMjOJLXRnTZxzK9Y" Comment="Predicted Label" Bounds="687,630,81,15" ShowValueBox="true" isIOBox="true" />
           <Pad Id="SINrTkFPSzUOEI3ZS5fs3x" Comment="Score" Bounds="804,676,65,80" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="473,1113,61,19" Id="E6WcZy0FOxZMOPGr4EzYFs">
+          <Node Bounds="968,1061,61,19" Id="E6WcZy0FOxZMOPGr4EzYFs">
             <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessNode" Name="FakeNews" />
             </p:NodeReference>
             <Pin Id="TlNyj0XNHxHLPymSaYvJtS" Name="title" Kind="InputPin" />
             <Pin Id="QQG9r6xX2lnNAPCIbLDZwz" Name="text" Kind="InputPin" />
-            <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
+            <Pin Id="PBCVxOc27JlLx4AqQ7kAJI" Name="Run" Kind="InputPin" />
             <Pin Id="IJZuCHTGGvxLwnGGrsZxQ6" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="HjJvjeJwOzqOXtiMJyzMH4" Name="Score" Kind="OutputPin" />
             <Pin Id="TAxtJIlSgFMLZr1ROjc057" Name="Labels" Kind="OutputPin" />
+            <Pin Id="NTHS0R3140iMkG6XNsaCRW" Name="Predict" Kind="InputPin" />
           </Node>
-          <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="500,1150,47,92" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="UB0QXVvXCH0LoYJgOW7Rb1" Comment="Predicted Label" Bounds="475,1255,127,15" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="HnJZOahTuWCNzrDBwwtWTR" Comment="title" Bounds="475,884,305,8" ShowValueBox="true" isIOBox="true" Value="White House drops Trump orders trying to ban TikTok, WeChat">
+          <Pad Id="SHboIlaOkdpNn50dZCsh4S" Comment="Score" Bounds="995,1098,47,92" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="UB0QXVvXCH0LoYJgOW7Rb1" Comment="Predicted Label" Bounds="970,1203,127,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="HnJZOahTuWCNzrDBwwtWTR" Comment="title" Bounds="970,832,305,15" ShowValueBox="true" isIOBox="true" Value="White House drops Trump orders trying to ban TikTok, WeChat">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="BO9fKgFZQatQc66VhaFzG8" Comment="text" Bounds="503,912,193,175" ShowValueBox="true" isIOBox="true" Value="Officials say the White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China. A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ personal data or have connections to Chinese military or intelligence activities.&#xD;&#xA;WASHINGTON (AP) — The White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China, officials said Wednesday.&#xD;&#xA;&#xD;&#xA;A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ persona data or have connections to Chinese military or intelligence activities.&#xD;&#xA;&#xD;&#xA;The department also will make recommendations on how to further protect Americans’ genetic and personal health information, and will address the risks of certain software apps connected to China or other adversaries, according to senior administration officials.&#xD;&#xA;&#xD;&#xA;The Biden administration’s move reflects the ongoing concern that Americans’ personal data could be exposed by popular apps tied to China, a chief U.S. economic and political rival. The White House and Congress have both taken action to address Beijing’s technological advancement. On Tuesday, the Senate passed a bill that aims to boost U.S. semiconductor production and the development of artificial intelligence and other technology in the face of growing international competition.&#xD;&#xA;&#xD;&#xA;The administration earlier this year had backed off President Donald Trump’s attempts to ban the popular video app TikTok, asking a court to postpone a legal dispute as the government began a broader review of the national security threats posed by Chinese technology companies.&#xD;&#xA;&#xD;&#xA;A court filing said the Commerce Department was reviewing whether Trump’s claims about TikTok’s threat to national security justified the attempts to ban it from smartphone app stores and deny it vital technical services. An update to the review was due in a court case later this week.&#xD;&#xA;&#xD;&#xA;Also in limbo has been a proposed U.S. takeover of TikTok. Last year, the Trump administration brokered a deal that would have had U.S. corporations Oracle and Walmart take a large stake in the Chinese-owned app on national security grounds.&#xD;&#xA;&#xD;&#xA;The unusual arrangement stemmed from a Trump executive order that aimed to ban TikTok in the U.S. unless it accepted a greater degree of American control.&#xD;&#xA;&#xD;&#xA;Trump targeted TikTok over the summer of 2020 with a series of orders that cited concerns over the U.S. data that TikTok collects from its users. Courts temporarily blocked the White House’s attempted ban, and the presidential election soon overshadowed the TikTok fight.&#xD;&#xA;&#xD;&#xA;TikTok has been looking to the U.S. Court of Appeals for the District of Columbia Circuit to review Trump’s divestment order and the government’s national security review.">
+          <Pad Id="BO9fKgFZQatQc66VhaFzG8" Comment="text" Bounds="998,860,193,175" ShowValueBox="true" isIOBox="true" Value="Officials say the White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China. A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ personal data or have connections to Chinese military or intelligence activities.&#xD;&#xA;WASHINGTON (AP) — The White House has dropped Trump-era executive orders that attempted to ban the popular apps TikTok and WeChat and will conduct its own review aimed at identifying national security risks with software applications tied to China, officials said Wednesday.&#xD;&#xA;&#xD;&#xA;A new executive order directs the Commerce Department to undertake what officials describe as an “evidence-based” analysis of transactions involving apps that are manufactured or supplied or controlled by China. Officials are particularly concerned about apps that collect users’ persona data or have connections to Chinese military or intelligence activities.&#xD;&#xA;&#xD;&#xA;The department also will make recommendations on how to further protect Americans’ genetic and personal health information, and will address the risks of certain software apps connected to China or other adversaries, according to senior administration officials.&#xD;&#xA;&#xD;&#xA;The Biden administration’s move reflects the ongoing concern that Americans’ personal data could be exposed by popular apps tied to China, a chief U.S. economic and political rival. The White House and Congress have both taken action to address Beijing’s technological advancement. On Tuesday, the Senate passed a bill that aims to boost U.S. semiconductor production and the development of artificial intelligence and other technology in the face of growing international competition.&#xD;&#xA;&#xD;&#xA;The administration earlier this year had backed off President Donald Trump’s attempts to ban the popular video app TikTok, asking a court to postpone a legal dispute as the government began a broader review of the national security threats posed by Chinese technology companies.&#xD;&#xA;&#xD;&#xA;A court filing said the Commerce Department was reviewing whether Trump’s claims about TikTok’s threat to national security justified the attempts to ban it from smartphone app stores and deny it vital technical services. An update to the review was due in a court case later this week.&#xD;&#xA;&#xD;&#xA;Also in limbo has been a proposed U.S. takeover of TikTok. Last year, the Trump administration brokered a deal that would have had U.S. corporations Oracle and Walmart take a large stake in the Chinese-owned app on national security grounds.&#xD;&#xA;&#xD;&#xA;The unusual arrangement stemmed from a Trump executive order that aimed to ban TikTok in the U.S. unless it accepted a greater degree of American control.&#xD;&#xA;&#xD;&#xA;Trump targeted TikTok over the summer of 2020 with a series of orders that cited concerns over the U.S. data that TikTok collects from its users. Courts temporarily blocked the White House’s attempted ban, and the presidential election soon overshadowed the TikTok fight.&#xD;&#xA;&#xD;&#xA;TikTok has been looking to the U.S. Court of Appeals for the District of Columbia Circuit to review Trump’s divestment order and the government’s national security review.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Gu2g344eMTwP0m6iP98J6P" Comment="Predict" Bounds="531,1098,35,16" ShowValueBox="true" isIOBox="true" Value="False">
+          <Pad Id="Gu2g344eMTwP0m6iP98J6P" Comment="Predict" Bounds="1026,1046,35,16" ShowValueBox="true" isIOBox="true" Value="False">
             <p:TypeAnnotation>
               <Choice Kind="TypeFlag" Name="Boolean" />
               <FullNameCategoryReference ID="Primitive" />
@@ -170,13 +171,63 @@
             </p:NodeReference>
             <Pin Id="MgYBvCNHyQDLVt0rCLNLu6" Name="title" Kind="InputPin" />
             <Pin Id="Uja4MhErpLqNigMLO5Yq8S" Name="text" Kind="InputPin" />
-            <Pin Id="Od2jJxQDOnXPIl3xRLMylm" Name="Predict" Kind="InputPin" />
+            <Pin Id="Jy35pO4ZNFqO9K0CuF9Vke" Name="Run" Kind="InputPin" />
             <Pin Id="IORt48b7eQROseImpASS1t" Name="Predicted Label" Kind="OutputPin" />
             <Pin Id="FNcIl5HhTWgOFJdCZxruAy" Name="Score" Kind="OutputPin" />
             <Pin Id="DPxsT5Ut99SPFxVXV3SEil" Name="Labels" Kind="OutputPin" />
           </Node>
           <Pad Id="PQU8QFY0uRqOJIAEPCkSeo" Comment="Labels" Bounds="938,678,73,80" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="JLJOoiwfQFPQUC0o82eDhx" Comment="Labels" Bounds="575,1155,54,95" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="JLJOoiwfQFPQUC0o82eDhx" Comment="Labels" Bounds="1070,1103,54,95" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="458,713" Id="DY4zwplyjfVNJNesxKa9Dr">
+            <p:NodeReference LastCategoryFullName="ML.MLNet" LastSymbolSource="VL.MLNet-Factory">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessNode" Name="CatDogOtter" />
+            </p:NodeReference>
+            <Pin Id="UHw8OGd8adjOzNTFKCG7oZ" Name="ImageSource" Kind="InputPin" />
+            <Pin Id="CbaiYGxtUdIMUZGBWUlqTB" Name="Run" Kind="InputPin" />
+            <Pin Id="MD5E1k0kngFNXCpyKPX0mG" Name="Predicted Label" Kind="OutputPin" />
+            <Pin Id="FqHE9GlAt0vMErevRhlwgm" Name="Score" Kind="OutputPin" />
+            <Pin Id="Vt3uhLTF6KLQGB8BtWqV8j" Name="Labels" Kind="OutputPin" />
+          </Node>
+          <Pad Id="U0GVt2ckmxzPASVGbpDGaw" Bounds="460,640,35,15" ShowValueBox="true" isIOBox="true" Value="C:\Users\seb\Downloads\images\dog\03.jpg">
+            <p:TypeAnnotation LastCategoryFullName="IO" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="Path" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="458,665,55,19" Id="CWRdLMRdc1ZLe3sJ6xwYp4">
+            <p:NodeReference LastCategoryFullName="System.Conversion" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="ToString" />
+            </p:NodeReference>
+            <Pin Id="UZGqVkGoWAOLtrxYPrOiNN" Name="Input" Kind="InputPin" />
+            <Pin Id="P4M7sz40pnqP7G5NNoxCQ6" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Pad Id="TqNO7riwecAOrhUQvyfLVt" Comment="Predicted Label" Bounds="456,858,63,28" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="PB0FS24tTG2MqGKJ8nKrFq" Comment="Predict" Bounds="528,656,35,35" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="Boolean" />
+              <FullNameCategoryReference ID="Primitive" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="267,698,75,19" Id="BIZJMQ9fFcSNHYqMzrJ056">
+            <p:NodeReference LastCategoryFullName="Graphics.Skia.IO" LastSymbolSource="VL.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ImageReader" />
+            </p:NodeReference>
+            <Pin Id="CAKR5NBNUyVObHRktu6VRk" Name="Filename" Kind="InputPin" />
+            <Pin Id="Tsgq1cmZ8pVOubuh2Wqhjr" Name="Load" Kind="InputPin" DefaultValue="False">
+              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="Boolean" />
+              </p:TypeAnnotation>
+            </Pin>
+            <Pin Id="T7YA9hdidk3MiSAGTosZW8" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="KwYbHGC3StrMSUeze4vyO7" Comment="Score" Bounds="629,855,35,65" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="II27XzMk8HqNeC2TinMHP8" Comment="Labels" Bounds="722,852,35,65" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Bol0rJNV88KMulvs9Lmprf" Comment="" Bounds="201,758,230,127" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
         <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
@@ -184,7 +235,6 @@
           <Fragment Id="KGItBanaoe8OTtmrFvQOev" Patch="J7amywRwp4FP06LTAjeSOh" Enabled="true" />
           <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="BtwsiZmxvy1MDmLIafs3PV" Ids="TE7TDh0F7hoOEJWouuIvnH,NkCxH2k8WMqP3qa3tPHXCn" />
         <Link Id="RPoo5MVx5DbL6NC9GGkjrL" Ids="CMwZ0wRZwkHNiPHSYpHoKU,Je2vpyR6iILQFwMGTAX58h" />
         <Link Id="RjwSIc5wrZDN5hITffMiaV" Ids="E14xog5cGYrLhlni4vqlBR,Ujtvk3ZABx5QA01i2vcvmE" />
         <Link Id="PWCNldttSSZMzGiqU82LC7" Ids="OnjAcVXdvfoNRjoQ9h3roB,U2L7AhuCtmzOoP4i1WAJZE" />
@@ -198,7 +248,6 @@
         <Link Id="OT4ngrrlzDaOlPMo8xIREz" Ids="S5Arb6Kcv5BNi0UBaCvLcX,VLShOHShGxbO8En3HbR7q7" />
         <Link Id="GiX8NAbfM6YLuNL7BieE5f" Ids="BgmJ0LsSqZ8NZWumauX5GY,ApC25azZ0QtLN7TavVMISY" />
         <Link Id="CPM7UcNbZHzLsqxZ773JDN" Ids="G920jxWs8XlMNdlcNwQ4o6,Gj767pNQnLPPJhZlleIc7d" />
-        <Link Id="UdknoLbRq3EPpOdnLB66Se" Ids="Vu9Aa0AbonMN8AVCuSG9x2,H9JoH4nJkTwOIeMyYonTJr" />
         <Link Id="Ac6i2wctuXiNMubYRuNPUh" Ids="LJ9RffP8L4VO8WZNVn9QSt,JmI4MzRMjOJLXRnTZxzK9Y" />
         <Link Id="VGJz42vyLlIO3ihtrqU6cH" Ids="Pg4YYXuFFuzP1bHqtQLQAG,SINrTkFPSzUOEI3ZS5fs3x" />
         <Link Id="HPif4TdTVnnNhEp39RUhMR" Ids="HjJvjeJwOzqOXtiMJyzMH4,SHboIlaOkdpNn50dZCsh4S" />
@@ -208,8 +257,19 @@
         <Link Id="FXHqn92zd5lPEVARrT0MQc" Ids="Gu2g344eMTwP0m6iP98J6P,NTHS0R3140iMkG6XNsaCRW" />
         <Link Id="HdMJpTteqBeNIExA1iZ5dn" Ids="MV9sFOciQ5RPQwlJXD2rdP,PQU8QFY0uRqOJIAEPCkSeo" />
         <Link Id="HkR5o2e7ns2NcYXRCR1kA1" Ids="TAxtJIlSgFMLZr1ROjc057,JLJOoiwfQFPQUC0o82eDhx" />
+        <Link Id="GvkFvmsbRjdLWEHRtZy15g" Ids="U0GVt2ckmxzPASVGbpDGaw,UZGqVkGoWAOLtrxYPrOiNN" />
+        <Link Id="DYdLetGZYpAPphpghzxAF3" Ids="P4M7sz40pnqP7G5NNoxCQ6,UHw8OGd8adjOzNTFKCG7oZ" />
+        <Link Id="SugJVBV4bC3LRwfkRYrxXb" Ids="MD5E1k0kngFNXCpyKPX0mG,TqNO7riwecAOrhUQvyfLVt" />
+        <Link Id="OJXJn3aujuMM84lM9FNxC8" Ids="U0GVt2ckmxzPASVGbpDGaw,CAKR5NBNUyVObHRktu6VRk" />
+        <Link Id="PhxTPxleBf9LQO3l46oAEy" Ids="TE7TDh0F7hoOEJWouuIvnH,F3vw1DJPfcLNEwZz3jyf27" />
+        <Link Id="OaojvHrdjGmPKXGd750DAP" Ids="Vu9Aa0AbonMN8AVCuSG9x2,KXsa0cBGj3FOnKTCu1S9NF" />
+        <Link Id="BGWWcmmE1lEMy5J9JrMli9" Ids="PB0FS24tTG2MqGKJ8nKrFq,CbaiYGxtUdIMUZGBWUlqTB" />
+        <Link Id="NDFvjwER0ziMAC7RLR41Si" Ids="FqHE9GlAt0vMErevRhlwgm,KwYbHGC3StrMSUeze4vyO7" />
+        <Link Id="HHILYNOMI01OCNMb0gp12v" Ids="Vt3uhLTF6KLQGB8BtWqV8j,II27XzMk8HqNeC2TinMHP8" />
+        <Link Id="GI8rFzf7yc7Ns9YxNkLCLq" Ids="T7YA9hdidk3MiSAGTosZW8,Bol0rJNV88KMulvs9Lmprf" />
       </Patch>
     </Node>
   </Patch>
   <NugetDependency Id="PyDhpUzutKpOFK8qJMpXCt" Location="VL.ML" Version="0.0.0.0" />
+  <NugetDependency Id="DybIVuCU7zGPJMhFYJ0f68" Location="VL.Skia" Version="2021.3.3" />
 </Document>

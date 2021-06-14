@@ -3,10 +3,10 @@ using System.IO;
 using System.Reactive.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using VL.Core;
-using Microsoft.ML;
 using System.Linq;
 using System.Reflection;
+using VL.Core;
+using Microsoft.ML;
 using Microsoft.ML.Data;
 
 namespace VL.ML
@@ -165,7 +165,7 @@ namespace VL.ML
             }
             else if(description.FModelType == "ImageClassification")
             {
-                return;
+                outputType = typeof(ImageClassificationOutput);
             }
             else
             {
@@ -216,10 +216,10 @@ namespace VL.ML
                 // Create an input object that will hold our pin's data
                 var inputObject = Activator.CreateInstance(inputType);
 
-                if(description.FModelType == "Classification")
+                if(description.FModelType == "Classification" || description.FModelType == "ImageClassification")
                 {
                     // We know all input pins that are not named "Predict" should be taken into account
-                    foreach(var dataPin in Inputs.Cast<MyPin>().Where(i => i.Name != "Predict"))
+                    foreach(var dataPin in Inputs.Cast<MyPin>().Where(i => i.Name != "Run"))
                     {
                         inputType.InvokeMember(dataPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { dataPin.Value });
                     }
@@ -260,9 +260,10 @@ namespace VL.ML
                     var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
                     outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
                 }
-                else if(description.FModelType == "ImageRecognition")
+                else if(description.FModelType == "ImageClassification")
                 {
-                    return;
+                    // Keeping this for clarity
+                    // see code for "Classification" above
                 }
                 else
                 {

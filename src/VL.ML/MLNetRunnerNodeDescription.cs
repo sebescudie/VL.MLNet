@@ -71,7 +71,7 @@ namespace VL.ML
                     inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
                 }
 
-                if (FModelType == "Classification")
+                if (FModelType == "Classification" || FModelType == "ImageClassification")
                 {
                     // Retrieve outputs
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
@@ -94,16 +94,16 @@ namespace VL.ML
                 }
                 else if(FModelType == "ImageClassification")
                 {
-                    // Soon
+                    // Keeping for clarity
+                    // see Classification
                 }
                 else
                 {
                     // Unknown model type
                 }
 
-                
                 // Add the Trigger input that will allow to trigger the node
-                inputs.Add(new PinDescription("Predict", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
+                inputs.Add(new PinDescription("Run", typeof(bool), false, "Runs a prediction every frame as long as enabled"));
                 #endregion Create inputs and outputs
 
                 FSummary = String.Format("Runs the ML.NET {0} {1} pre-trained model",FFriendlyName, FModelType);
@@ -118,8 +118,6 @@ namespace VL.ML
         }
 
         public IVLNodeDescriptionFactory Factory { get; }
-
-
 
         public string Name { get; }
         public string Category => "ML.MLNet";
