@@ -94,7 +94,14 @@ namespace VL.ML
                 }
                 else if(FModelType == "ImageClassification")
                 {
-                    // Soon
+                    // Retrieve outputs
+                    var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
+                    GetTypeDefaultAndDescription(predictedLabelColumn, ref type, ref dflt, ref descr);
+                    outputs.Add(new PinDescription("Predicted Label", type, dflt, descr));
+
+                    var scoresColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
+                    GetTypeDefaultAndDescription(scoresColumn, ref type, ref dflt, ref descr);
+                    outputs.Add(new PinDescription("Score", type, dflt, descr));
                 }
                 else
                 {

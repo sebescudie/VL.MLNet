@@ -3,10 +3,10 @@ using System.IO;
 using System.Reactive.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using VL.Core;
-using Microsoft.ML;
 using System.Linq;
 using System.Reflection;
+using VL.Core;
+using Microsoft.ML;
 using Microsoft.ML.Data;
 
 namespace VL.ML
@@ -165,7 +165,7 @@ namespace VL.ML
             }
             else if(description.FModelType == "ImageClassification")
             {
-                return;
+                outputType = typeof(ImageClassificationOutput);
             }
             else
             {
@@ -260,9 +260,24 @@ namespace VL.ML
                     var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
                     outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
                 }
-                else if(description.FModelType == "ImageRecognition")
+                else if(description.FModelType == "ImageClassification")
                 {
-                    return;
+                    foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
+                    {
+                        inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
+                    }
+
+                    // Invoke the predict method
+                    var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
+                    var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
+
+                    // Look for the "Predicted Label" output pin, and assign it the value of the "PredictedLabel" field of the output type
+                    var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Predicted Label");
+                    outputPin.Value = outputType.InvokeMember("PredictedLabel", BindingFlags.GetProperty, null, result, new object[] { });
+
+                    // Look for the "Score" output pin, and assign it the value of the "Score" field of the output type
+                    var scorePin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
+                    scorePin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
                 }
                 else
                 {
