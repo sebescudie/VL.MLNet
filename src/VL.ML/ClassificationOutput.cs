@@ -1,12 +1,11 @@
 ﻿using Microsoft.ML.Data;
-using System;
 
 namespace VL.ML
 {
-    class TextClassificationOutput
+    class ClassificationOutput
     {
         [ColumnName("PredictedLabel")]
-        public String PredictedLabel { get; set; }
+        public string PredictedLabel { get; set; }
         public float[] Score { get; set; }
     }
 }
