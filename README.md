@@ -1,10 +1,18 @@
 # VL.MLNet
 
+[![Nuget](https://img.shields.io/nuget/vpre/VL.MLNet?style=flat-square)](https://www.nuget.org/packages/VL.MLNet)
+
 _Allows to run pre-trained ML.NET models as nodes in vvvv gamma._
 
 ## Get it
 
-For now, please clone/fork this repo in your [`package-repositories`](https://thegraybook.vvvv.org/reference/libraries/contributing.html#source-package-repositories) folder
+Go to VL's command line and type
+
+```
+nuget install VL.MLNet -pre
+```
+
+For more information on how to install nugets in vvvv, please refere to [this section](https://thegraybook.vvvv.org/reference/libraries/referencing.html#manage-nugets) of the Gray Book.
 
 ##  Supported scenarios
 
