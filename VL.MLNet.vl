@@ -25,6 +25,6 @@
     </Node>
   </Patch>
   <NugetDependency Id="HiMZOSDprD8QABFK7JGwML" Location="VL.Stride" Version="2021.3.3" />
-  <PlatformDependency Id="VyWandO7Ic0OP14iBaL8qn" Location="./src/VL.ML/bin/Debug/netstandard2.0/VL.ML.dll" />
   <NodeFactoryDependency Id="B65n58VyTpVM409xosXaTt" Location="VL.MLNet-Factory" IsForward="true" />
+  <PlatformDependency Id="DbKvBLsNIWjNqecUtOq6zh" Location="./src/VL.MLNet/bin/x64/Release/net472/VL.MLNet.dll" />
 </Document>
