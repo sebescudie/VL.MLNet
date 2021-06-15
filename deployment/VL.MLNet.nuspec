@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>VL.MLNet</id>
-    <version>1.0.0-preview01</version>
+    <version>1.0.0-preview02</version>
     <title>VL.MLNet</title>
     <authors>sebescudie, azeno</authors>
     <owners>sebescudie</owners>
@@ -18,7 +18,7 @@
     <file src="icon.png" target="" />
     <file src="..\*.vl" target="" exclude="" />
     <file src="..\**\*.vl" target="" exclude="" />
-    <file src="..\src\VL.MLNet\bin\x64\Release\net472\*.dll" target="lib\net472" exclude="" />
-    <file src="..\src\VL.MLNet\bin\x64\Release\net472\VL.MLNet.pdb" target="lib\net472" exclude="" />
+    <file src="..\src\VL.MLNet\bin\Release\net472\*.dll" target="lib\net472" exclude="" />
+    <file src="..\src\VL.MLNet\bin\Release\net472\VL.MLNet.pdb" target="lib\net472" exclude="" />
   </files>
 </package>
