@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="OAlzQNyPoltNwHzPjHO01V" LanguageVersion="2021.3.3.131" Version="0.128">
+  <NugetDependency Id="Kh84isHxThQQN9qVQVgM7e" Location="VL.CoreLib" Version="2021.3.3" />
+  <Patch Id="VlyZ4nntwULMnDR488jJ4J">
+    <Canvas Id="OF3xCnDdYWsPwTRPu29xgz" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="LRxbo3Rp3lLNf2qs3GmJ5q">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="B0OIp0b7nlcQTvEtQa4edv">
+        <Canvas Id="IbgG6gYphIiNovaXMVRJm1" CanvasType="Group">
+          <Pad Id="NCxVPqEVQvMMggRzZj5sbo" Bounds="177,310,35,27" ShowValueBox="true" isIOBox="true" Value="2.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">13</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="LE5sln3OT8NLwgenuvvyYT" Bounds="216,310,492,37" ShowValueBox="true" isIOBox="true" Value="Get a pre-trained model using Visual Studio's Model Builder plugin. For more information on how to do this, checkout this link :">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="HrARxHvCtcKPUZ4UVcAhYd" Bounds="216,351,495,19" ShowValueBox="true" isIOBox="true" Value="https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet/model-builder">
+            <p:TypeAnnotation>
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="JJnu2gvfRKhMsZ27TzEMjD" Bounds="216,382,492,37" ShowValueBox="true" isIOBox="true" Value="Please note that for now, the plugin only supports text classification, regression and image classification scenarios.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="EVPAlKAMbRcLgKTdzALcaZ" Bounds="176,451,35,27" ShowValueBox="true" isIOBox="true" Value="3.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">13</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="Tv6PvHQBOkEOJbF8UKZJbq" Bounds="215,451,506,189" ShowValueBox="true" isIOBox="true" Value="Once you have your trained model as a zip file, you should first rename it. Pick a name without spaces, this will be the name of your node. Next, you should add one of those prefixes, depending on which scenario you picked :&#xD;&#xA;&#xD;&#xA;- Regression : add _Regression to the filename&#xD;&#xA;- Image classification : add _ImageClassification to the filename&#xD;&#xA;- Text classification : add _TextClassificatin to the filename&#xD;&#xA;&#xD;&#xA;Drop those zip files in a folder called &quot;ml-models&quot;. Then create your VL document next to this folder.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="HNYra0Mc7IFNVF99MPvvaq" Bounds="179,668,35,27" ShowValueBox="true" isIOBox="true" Value="4.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">13</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="FKu7f4dvehzN6cfPUx2LoL" Bounds="218,668,499,97" ShowValueBox="true" isIOBox="true" Value="Open your VL document, add a reference to VL.MLNet. You should see a new ML.MLNet category in the node browser. In this category, you should see one node per zip file.&#xD;&#xA;&#xD;&#xA;Simply create any of those nodes to run the associated model in your patch.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="LyNClDN5TEaLyPnasKQvUl" Bounds="179,186,35,27" ShowValueBox="true" isIOBox="true" Value="1.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">13</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="M3xnqwuEnMDL8CndwKPIOo" Bounds="218,186,494,96" ShowValueBox="true" isIOBox="true" Value="The first thing you should do is rename the column that will serve as a label in your dataset to Label. For instance, if you have a CSV that lists house prices depending on their size and number of floors, the column that actually contains the house price should be renamed Label. Same thing for a text classification model. This does not apply for Image Recognition models.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Overlay Id="TSRYcH3yNdRP9Gewjl38dh" Name="" Bounds="115,95,714,742" />
+        </Canvas>
+        <Patch Id="J7amywRwp4FP06LTAjeSOh" Name="Create" />
+        <Patch Id="FSeLhNEvpDGOMfXfmoJuXs" Name="Update" />
+        <ProcessDefinition Id="EbPfBCbCzR5OAK7lhaq955">
+          <Fragment Id="KGItBanaoe8OTtmrFvQOev" Patch="J7amywRwp4FP06LTAjeSOh" Enabled="true" />
+          <Fragment Id="T5q9VYV00tjLPbQa1V13a2" Patch="FSeLhNEvpDGOMfXfmoJuXs" Enabled="true" />
+        </ProcessDefinition>
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="DybIVuCU7zGPJMhFYJ0f68" Location="VL.Skia" Version="2021.3.3" />
+  <NugetDependency Id="GKmVVQhsut8OrvC7V4pasg" Location="VL.MLNet" Version="0.0.0.0" />
+</Document>

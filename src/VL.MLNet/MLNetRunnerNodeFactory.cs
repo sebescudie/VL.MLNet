@@ -33,8 +33,9 @@ namespace VL.MLNet
                     foreach(string preTrainedModelFile in preTrainedModelFiles)
                     {
                         var fullName = Path.GetFileNameWithoutExtension(preTrainedModelFile);
-                        var friendlyName = fullName.Split('_')[0];
-                        var modelTypeString = fullName.Split('_')[1];
+                        var cleanFullName = String.Concat(fullName.Where(c => !Char.IsWhiteSpace(c)));
+                        var friendlyName = cleanFullName.Split('_')[0];
+                        var modelTypeString = cleanFullName.Split('_')[1];
                         if (Enum.TryParse<Enums.ModelType>(modelTypeString, out var modelType))
                             builder.Add(new MLNetRunnerNodeDescription(this, preTrainedModelFile, friendlyName, modelType));
                         else
@@ -43,7 +44,7 @@ namespace VL.MLNet
                 }
                 else
                 {
-                    Console.WriteLine("ML subdirectory does not exist");
+                    Console.WriteLine("Could not find ML subdirectory");
                 }
             }
             
@@ -63,18 +64,17 @@ namespace VL.MLNet
             }
         }
 
-        // Fires when something has been added to the watched dir
         public IObservable<object> Invalidated
         {
             get
             {
                 if(Dir != null)
                 {
-                    return NodeBuilding.WatchDir(Dir).Where(e => string.Equals(e.Name, mlSubDir, StringComparison.OrdinalIgnoreCase));
+                    return NodeBuilding.WatchDir(Dir).Where(e => e.ChangeType == WatcherChangeTypes.All);
                 }
                 else if(DirToWatch != null)
                 {
-                    return NodeBuilding.WatchDir(DirToWatch).Where(e => e.Name == mlSubDir);
+                    return NodeBuilding.WatchDir(DirToWatch).Where(e => e.ChangeType == WatcherChangeTypes.All);
                 }
                 else
                 {
