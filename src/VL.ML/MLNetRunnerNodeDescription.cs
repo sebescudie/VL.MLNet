@@ -172,7 +172,7 @@ namespace VL.ML
             }
         }
 
-        private void GetTypeDefaultAndDescription(dynamic pin, ref Type type, ref object dflt, ref string descr)
+        private void GetTypeDefaultAndDescription(DataViewSchema.Column pin, ref Type type, ref object dflt, ref string descr)
         {
             descr = pin.Name;
 
@@ -251,7 +251,7 @@ namespace VL.ML
             }
         }
 
-        private static void GetType(dynamic input, ref Type type)
+        private static void GetType(DataViewSchema.Column input, ref Type type)
         {
             if (input.Type.ToString() == "String")
             {
