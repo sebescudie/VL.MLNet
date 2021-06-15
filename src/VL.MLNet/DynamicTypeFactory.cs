@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     // CREDITS : https://github.com/jonathancrozier/JC.Samples.DynamicProperties
 

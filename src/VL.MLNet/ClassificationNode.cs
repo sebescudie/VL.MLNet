@@ -7,7 +7,7 @@ using VL.Core;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     partial class ClassificationNode<TInput> : VLObject, IVLNode
         where TInput : class, new()

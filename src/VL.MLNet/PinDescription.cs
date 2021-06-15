@@ -1,7 +1,7 @@
 ﻿using System;
 using VL.Core;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     class PinDescription : IVLPinDescription, IInfo
     {

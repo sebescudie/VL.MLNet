@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="Q4x7rZq30F4N1XdQcqcGbj" LanguageVersion="2021.3.3.131" Version="0.128">
+  <NugetDependency Id="TXmjaPoWaH7OyJskjGmo7S" Location="VL.CoreLib" Version="2021.3.3" />
+  <Patch Id="OmH4raen9yNMBWH2CaWBwi">
+    <Canvas Id="TWCrhDCA5w9NtmWPpsN4ag" DefaultCategory="ML" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="JEMxdZaTjQ0PaSAMXjjt4u">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="NmKAJJFNaHoP37T96rR3Vq">
+        <Canvas Id="J5YBVzjAhAuOquo3ElqDG3" CanvasType="Group" />
+        <Patch Id="A5i1IOMLEY4MB9Lz1rqgqC" Name="Create" />
+        <Patch Id="FGUbS06T6gTPZBbSHAi28D" Name="Update" />
+        <ProcessDefinition Id="J5zYuMPeHRHMNZGVVVoL7C">
+          <Fragment Id="FfNERKE0FndNcmtqfwqqT2" Patch="A5i1IOMLEY4MB9Lz1rqgqC" Enabled="true" />
+          <Fragment Id="R3SLAfHRzxUNiqDnGBRBD5" Patch="FGUbS06T6gTPZBbSHAi28D" Enabled="true" />
+        </ProcessDefinition>
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="HiMZOSDprD8QABFK7JGwML" Location="VL.Stride" Version="2021.3.3" />
+  <PlatformDependency Id="VyWandO7Ic0OP14iBaL8qn" Location="./src/VL.ML/bin/Debug/netstandard2.0/VL.ML.dll" />
+  <NodeFactoryDependency Id="B65n58VyTpVM409xosXaTt" Location="VL.MLNet-Factory" IsForward="true" />
+</Document>

@@ -2,9 +2,9 @@
 using VL.Core.CompilerServices;
 
 // Tell VL where to find the initializer
-[assembly: AssemblyInitializer(typeof(VL.ML.Initialization))]
+[assembly: AssemblyInitializer(typeof(VL.MLNet.Initialization))]
 
-namespace VL.ML
+namespace VL.MLNet
 {
     public class Initialization : AssemblyInitializer<Initialization>
     {

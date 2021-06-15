@@ -1,4 +1,4 @@
-﻿namespace VL.ML
+﻿namespace VL.MLNet
 {
     class RegressionOutput
     {

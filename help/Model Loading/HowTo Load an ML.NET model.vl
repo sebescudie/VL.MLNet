@@ -270,6 +270,6 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="PyDhpUzutKpOFK8qJMpXCt" Location="VL.ML" Version="0.0.0.0" />
   <NugetDependency Id="DybIVuCU7zGPJMhFYJ0f68" Location="VL.Skia" Version="2021.3.3" />
+  <NugetDependency Id="GKmVVQhsut8OrvC7V4pasg" Location="VL.MLNet" Version="0.0.0.0" />
 </Document>

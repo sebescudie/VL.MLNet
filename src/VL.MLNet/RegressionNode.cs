@@ -5,7 +5,7 @@ using System.Reflection;
 using VL.Core;
 using Microsoft.ML;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     partial class RegressionNode<TInput> : VLObject, IVLNode
         where TInput : class, new()

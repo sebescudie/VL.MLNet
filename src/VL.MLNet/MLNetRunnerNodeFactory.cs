@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using VL.Core;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     public class MLNetRunnerNodeFactory : IVLNodeDescriptionFactory
     {

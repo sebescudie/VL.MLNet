@@ -7,7 +7,7 @@ using System.IO;
 using VL.Core.Diagnostics;
 using System.Reactive.Linq;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     /// <summary>
     /// Abstract ML.NET runner node

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     class Enums
     {

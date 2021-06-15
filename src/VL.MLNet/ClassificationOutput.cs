@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace VL.ML
+namespace VL.MLNet
 {
     class ClassificationOutput
     {
