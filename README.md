@@ -36,6 +36,19 @@ This plugin allows to run pre-trained ML.NET models as nodes. For each model, co
 - Put this zip file in a folder named `ml-models` next to your VL document
 - Start vvvv, you should see an `ML.MLNet` category in the node browser containing one node per `zip` file
 
+## Pre-trained models
+
+If you want to test the plugin right away without training your own models, you can try one of those I've trained and used during the development of the plugin :
+
+| Model name     | Type                 | Description                                                                                                                                                                                                                                                     | Download link                                                              |
+|----------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| CatDogOtter    | Image Classification | Trained to recognize either cats, dogs or otters                                                                                                                                                                                                                | [Here](http://sebescudie.fr/sharing/CatDogOtter_ImageClassification.zip)   |
+| FakeNews       | Text Classification  | Trained over the [fake and real news](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset) dataset. Will tell if an article, based on its title and content, appears to be fake news                                                              | [Here](http://sebescudie.fr/sharing/FakeNews_TextClassification.zip)       |
+| OffensiveOrNot | Text Classification  | Trained over a subset of the [WikiDetoxAnnotated](https://github.com/dotnet/machinelearning-samples/tree/main/samples/csharp/getting-started/BinaryClassification_SentimentAnalysis/SentimentAnalysis/Data) dataset. Will tell if a comment is offensive or not | [Here](http://sebescudie.fr/sharing/OffensiveOrNot_TextClassification.zip) |
+| RedWineQuality | Regression           | Trained over the [Red wine quality](https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009) dataset. Will predict the quality of a red wine based on various inputs such as acidity, alcohol, etc                                                      | [Here](http://sebescudie.fr/sharing/RedWineQuality_Regression.zip)         |
+
+Please note that when running the text classification models, you will get extra prediction labels that appear to be random excerpts of the input dataset. I'm not sure why this happens but I'm pretty confident it's because I made some mistakes when cleaning/merging CSV files before training.
+
 ## Known issues
 
 For some reason, the factory does not retrigger when a new model is added to the `ml-models` subdir. For now, you have to kill and restart vvvv for new models to be taken into account.
