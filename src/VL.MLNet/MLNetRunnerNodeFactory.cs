@@ -33,8 +33,9 @@ namespace VL.MLNet
                     foreach(string preTrainedModelFile in preTrainedModelFiles)
                     {
                         var fullName = Path.GetFileNameWithoutExtension(preTrainedModelFile);
-                        var friendlyName = fullName.Split('_')[0];
-                        var modelTypeString = fullName.Split('_')[1];
+                        var cleanFullName = String.Concat(fullName.Where(c => !Char.IsWhiteSpace(c)));
+                        var friendlyName = cleanFullName.Split('_')[0];
+                        var modelTypeString = cleanFullName.Split('_')[1];
                         if (Enum.TryParse<Enums.ModelType>(modelTypeString, out var modelType))
                             builder.Add(new MLNetRunnerNodeDescription(this, preTrainedModelFile, friendlyName, modelType));
                         else

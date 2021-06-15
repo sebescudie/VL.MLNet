@@ -3,7 +3,7 @@
     "VL.MLNet": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2021.3.3\\vvvv.exe",
-      "commandLineArgs": "-o \"D:\\documents\\dev\\vvvv\\libraries\\VL.MLNet\\help\\Model Loading\\HowTo Load an ML.NET model.vl\" --package-repositories \"D:\\documents\\dev\\vvvv\\libraries\""
+      "commandLineArgs": "-o \"D:\\documents\\dev\\vvvv\\libraries\\VL.MLNet\\help\\Model Loading\\Explanation Load an ML.NET model.vl\" --package-repositories \"D:\\documents\\dev\\vvvv\\libraries\""
     },
     "vvvv_debug": {
       "commandName": "Executable"
