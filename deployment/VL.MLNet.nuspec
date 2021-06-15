@@ -18,7 +18,7 @@
     <file src="icon.png" target="" />
     <file src="..\*.vl" target="" exclude="" />
     <file src="..\**\*.vl" target="" exclude="" />
-    <file src="..\src\VL.MLNet\bin\x64\Release\net472\*.dll" target="lib\net472" exclude="" />
-    <file src="..\src\VL.MLNet\bin\x64\Release\net472\VL.MLNet.pdb" target="lib\net472" exclude="" />
+    <file src="..\src\VL.MLNet\bin\Release\net472\*.dll" target="lib\net472" exclude="" />
+    <file src="..\src\VL.MLNet\bin\Release\net472\VL.MLNet.pdb" target="lib\net472" exclude="" />
   </files>
 </package>
