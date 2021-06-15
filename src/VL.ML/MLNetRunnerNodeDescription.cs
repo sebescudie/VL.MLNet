@@ -19,10 +19,9 @@ namespace VL.ML
         bool FError;
         string FSummary;
         string FPath;
-        string FFullName;
         string FFriendlyName;
 
-        public string FModelType { get; set; }
+        public Enums.ModelType FModelType { get; set; }
         private DataViewSchema predictionPipeline;
         
         public ITransformer TrainedModel { get; set; }
@@ -30,14 +29,15 @@ namespace VL.ML
         // I/O
         List<PinDescription> inputs = new List<PinDescription>();
         List<PinDescription> outputs = new List<PinDescription>();
+        private Type nodeType;
 
-        public MLNetRunnerNodeDescription(IVLNodeDescriptionFactory factory, string path)
+        public MLNetRunnerNodeDescription(IVLNodeDescriptionFactory factory, string path, string friendlyName, Enums.ModelType modelType)
         {
             Factory = factory;
             FPath = path;
-            FFullName = Path.GetFileNameWithoutExtension(path);
-            FFriendlyName = FFullName.Split('_')[0];
-            FModelType = FFullName.Split('_')[1];
+
+            FFriendlyName = friendlyName;
+            FModelType = modelType;
             Name = FFriendlyName;
 
             MLContext = new MLContext();
@@ -71,7 +71,7 @@ namespace VL.ML
                     inputs.Add(new PinDescription(inputCol.Name, type, dflt, descr));
                 }
 
-                if (FModelType == Enums.ModelType.TextClassification.ToString() || FModelType == Enums.ModelType.ImageClassification.ToString())
+                if (FModelType == Enums.ModelType.TextClassification || FModelType == Enums.ModelType.ImageClassification)
                 {
                     // Retrieve outputs
                     var predictedLabelColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "PredictedLabel");
@@ -85,7 +85,7 @@ namespace VL.ML
                     // Add an extra output for labels
                     outputs.Add(new PinDescription("Labels", typeof(IEnumerable<string>), new string[0], "Score labels"));
                 }
-                else if(FModelType == "Regression")
+                else if (FModelType == Enums.ModelType.Regression)
                 {
                     // Retrieve outputs
                     var scoreColumn = TrainedModel.GetOutputSchema(predictionPipeline).FirstOrDefault(o => o.Name == "Score");
@@ -172,7 +172,7 @@ namespace VL.ML
             }
         }
 
-        private void GetTypeDefaultAndDescription(dynamic pin, ref Type type, ref object dflt, ref string descr)
+        private void GetTypeDefaultAndDescription(DataViewSchema.Column pin, ref Type type, ref object dflt, ref string descr)
         {
             descr = pin.Name;
 
@@ -199,13 +199,68 @@ namespace VL.ML
 
         public IVLNode CreateInstance(NodeContext context)
         {
-            return new MyNode(this, context);
+            InitNodeType();
+
+            return (IVLNode)Activator.CreateInstance(nodeType, new object[] { this, context });
         }
 
         public bool OpenEditor()
         {
             // nope
             return true;
+        }
+
+        void InitNodeType()
+        {
+            if (nodeType != null)
+                return;
+
+            var factory = new DynamicTypeFactory();
+
+            var inputTypeProperties = new List<DynamicProperty>();
+            var outputTypeProperties = new List<DynamicProperty>();
+
+            Type type = typeof(object);
+
+            // Start by loading all inputs from the model and spawn a dynamic type with it
+            foreach (var inputColumn in PredictionPipeline)
+            {
+                GetType(inputColumn, ref type);
+
+                inputTypeProperties.Add(new DynamicProperty
+                {
+                    PropertyName = inputColumn.Name,
+                    DisplayName = inputColumn.Name,
+                    SystemTypeName = type.ToString()
+                });
+            }
+
+            var inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
+
+            switch (FModelType)
+            {
+                case Enums.ModelType.TextClassification:
+                case Enums.ModelType.ImageClassification:
+                    nodeType = typeof(ClassificationNode<>).MakeGenericType(inputType);
+                    break;
+                case Enums.ModelType.Regression:
+                    nodeType = typeof(RegressionNode<>).MakeGenericType(inputType);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private static void GetType(DataViewSchema.Column input, ref Type type)
+        {
+            if (input.Type.ToString() == "String")
+            {
+                type = typeof(string);
+            }
+            else if (input.Type.ToString() == "Single")
+            {
+                type = typeof(float);
+            }
         }
     }
 }

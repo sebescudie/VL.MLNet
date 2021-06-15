@@ -1,13 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reactive.Linq;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Reflection;
 using VL.Core;
-using Microsoft.ML;
-using Microsoft.ML.Data;
 
 namespace VL.ML
 {
@@ -36,7 +32,13 @@ namespace VL.ML
 
                     foreach(string preTrainedModelFile in preTrainedModelFiles)
                     {
-                        builder.Add(new MLNetRunnerNodeDescription(this, preTrainedModelFile));
+                        var fullName = Path.GetFileNameWithoutExtension(preTrainedModelFile);
+                        var friendlyName = fullName.Split('_')[0];
+                        var modelTypeString = fullName.Split('_')[1];
+                        if (Enum.TryParse<Enums.ModelType>(modelTypeString, out var modelType))
+                            builder.Add(new MLNetRunnerNodeDescription(this, preTrainedModelFile, friendlyName, modelType));
+                        else
+                            Console.WriteLine($"Unsupported model type {modelTypeString} in '{preTrainedModelFile}'");
                     }
                 }
                 else
@@ -100,175 +102,6 @@ namespace VL.ML
                 }
                 return new MLNetRunnerNodeFactory(directoryToWatch: path);
             });
-        }
-    }
-
-    class MyNode : VLObject, IVLNode
-    {
-        class MyPin : IVLPin
-        {
-            public object Value { get; set; }
-            public Type Type { get; set; }
-            public string Name { get; set; }
-        }
-
-        readonly MLNetRunnerNodeDescription description;
-
-        // Type factory stuff
-        Type inputType;
-        Type outputType;
-        List<DynamicProperty> inputTypeProperties = new List<DynamicProperty>();
-        List<DynamicProperty> outputTypeProperties = new List<DynamicProperty>();
-        
-        // Prediction engine
-        dynamic predictionEngine;
-
-        public MyNode(MLNetRunnerNodeDescription description, NodeContext nodeContext) : base(nodeContext)
-        {
-            this.description = description;
-            Inputs = description.Inputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
-            Outputs = description.Outputs.Select(p => new MyPin() { Name = p.Name, Type = p.Type, Value = p.DefaultValue }).ToArray();
-
-            MLContext = description.MLContext;
-
-            #region Type Generation
-            var factory = new DynamicTypeFactory();
-
-            var inputTypeProperties = new List<DynamicProperty>();
-            var outputTypeProperties = new List<DynamicProperty>();
-
-            Type type = typeof(object);
-
-            // Start by loading all inputs from the model and spawn a dynamic type with it
-            foreach (var inputColumn in description.PredictionPipeline)
-            {
-                GetType(inputColumn, ref type);
-
-                inputTypeProperties.Add(new DynamicProperty
-                {
-                    PropertyName = inputColumn.Name,
-                    DisplayName = inputColumn.Name,
-                    SystemTypeName = type.ToString()
-                });
-            }
-
-            inputType = factory.CreateNewTypeWithDynamicProperties(typeof(object), inputTypeProperties);
-
-            // Set the output type based on the model category
-            if (description.FModelType == Enums.ModelType.TextClassification.ToString())
-            {
-                outputType = typeof(TextClassificationOutput);
-            }
-            else if(description.FModelType == Enums.ModelType.Regression.ToString())
-            {
-                outputType = typeof(RegressionOutput);
-            }
-            else if(description.FModelType == Enums.ModelType.ImageClassification.ToString())
-            {
-                outputType = typeof(ImageClassificationOutput);
-            }
-            else
-            {
-                return;
-            }
-
-            // Spawn instances of those
-            // We actually just use those to spawn the dynamic prediction engine
-            // Could we re-use them instead?
-            var inputObject = Activator.CreateInstance(inputType);
-            var outputObject = Activator.CreateInstance(outputType);
-            
-            #endregion TypeGeneration
-
-            #region Prediction Engine
-            // Create prediction engine
-            var genericPredictionMethod = description.MLContext.Model.GetType().GetMethod("CreatePredictionEngine", new[] { typeof(ITransformer), typeof(DataViewSchema) });
-            var predictionMethod = genericPredictionMethod.MakeGenericMethod(inputObject.GetType(), outputObject.GetType());
-            predictionEngine = predictionMethod.Invoke(description.MLContext.Model, new object[] { description.TrainedModel, description.PredictionPipeline });
-            #endregion Prediction Engine
-        }
-
-        private static void GetType(dynamic input, ref Type type)
-        {
-            if (input.Type.ToString() == "String")
-            {
-                type = typeof(string);
-            }
-            else if (input.Type.ToString() == "Single")
-            {
-                type = typeof(float);
-            }
-        }
-
-        public IVLNodeDescription NodeDescription => description;
-
-        public IVLPin[] Inputs { get; }
-        public IVLPin[] Outputs { get; }
-        public MLContext MLContext { get; }
-
-        public void Update()
-        {
-            if (!Inputs.Any())
-                return;
-
-            if ((bool)Inputs.Last().Value)
-            {
-                // Create an input object that will hold our pin's data
-                var inputObject = Activator.CreateInstance(inputType);
-
-                if(description.FModelType == Enums.ModelType.TextClassification.ToString() || description.FModelType == Enums.ModelType.ImageClassification.ToString())
-                {
-                    // We know all input pins that are not named "Predict" should be taken into account
-                    foreach(var dataPin in Inputs.Cast<MyPin>().Where(i => i.Name != "Run"))
-                    {
-                        inputType.InvokeMember(dataPin.Name, BindingFlags.SetProperty, null, inputObject, new object[] { dataPin.Value });
-                    }
-
-                    // Invoke the predict method
-                    var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
-                    var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
-
-                    // Look for the "Predicted Label" output pin, and assign it the value of the "PredictedLabel" field of the output type
-                    var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Predicted Label");
-                    outputPin.Value = outputType.InvokeMember("PredictedLabel", BindingFlags.GetProperty, null, result, new object[] { });
-
-                    // Look for the "Score" output pin, and assign it the value of the "Score" field of the output type
-                    var scorePin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
-                    scorePin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
-
-                    // Do some voodoo to retrieve the score labels from the pipeline
-                    // Credits goes to https://blog.hompus.nl/2020/09/14/get-all-prediction-scores-from-your-ml-net-model/
-                    var labelBuffer = new VBuffer<ReadOnlyMemory<Char>>();
-                    predictionEngine.OutputSchema["Score"].Annotations.GetValue("SlotNames", ref labelBuffer);
-                    var labelsPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Labels");
-                    labelsPin.Value = labelBuffer.DenseValues().Select(l => l.ToString()).ToArray();
-                }
-                else if(description.FModelType == Enums.ModelType.Regression.ToString())
-                {
-                    // We're looking at a regression, for now we just have a one to one mapping
-                    // We'll need to find a way to get rid if the Label input later
-                    foreach (var input in Inputs.Cast<MyPin>().SkipLast(1))
-                    {
-                        inputType.InvokeMember(input.Name, BindingFlags.SetProperty, null, inputObject, new object[] { input.Value });
-                    }
-
-                    // Invoke the predict method
-                    var predictMethod = predictionEngine.GetType().GetMethod("Predict", new[] { inputType });
-                    var result = predictMethod.Invoke(predictionEngine, new[] { inputObject });
-
-                    // Look for the "Score" output pin and assign it the value return by the prediction
-                    var outputPin = Outputs.Cast<MyPin>().FirstOrDefault(o => o.Name == "Score");
-                    outputPin.Value = outputType.InvokeMember("Score", BindingFlags.GetProperty, null, result, new object[] { });
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-        public void Dispose()
-        {
-            Console.WriteLine("Ok bye");
         }
     }
 }
