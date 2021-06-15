@@ -6,6 +6,16 @@
     <Platforms>AnyCPU;x64</Platforms>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <Authors>sebescudie, azeno</Authors>
+    <Company />
+    <Version>1.0.0-beta01</Version>
+    <Description>A VL plugin allowing to run pre-trained ML.NET models</Description>
+    <Copyright>sebescudie, 2021</Copyright>
+    <PackageLicenseExpression>GNU General Public License v3.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sebescudie/VL.MLNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sebescudie/VL.MLNet</RepositoryUrl>
+    <PackageTags>vl ml ml.net net</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
