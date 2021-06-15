@@ -16,6 +16,8 @@
     <RepositoryUrl>https://github.com/sebescudie/VL.MLNet</RepositoryUrl>
     <PackageTags>vl ml ml.net net</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,4 +31,11 @@
     <PackageReference Include="VL.Core" Version="2021.3.2" IncludeAssets="build;compile" />
    
    </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\deployment\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
